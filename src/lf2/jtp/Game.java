@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,14 +26,14 @@ public class Game implements Runnable {
       JPanel panel = (JPanel) frame.getContentPane();
       panel.setPreferredSize(new Dimension(d.width, d.height));
       panel.setLayout(null);
-      
+      frame.setUndecorated(true);
       canvas = new Canvas();
       canvas.setBounds(0, 0, d.width, d.height);
       canvas.setIgnoreRepaint(true);
       
       panel.add(canvas); //utworzenie okna + dodanie do niego canvas
       
-      canvas.addMouseListener(new MouseControl()); //dodanie obsługi myszki
+      canvas.addMouseListener(new Control()); //dodanie obsługi myszki
       
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Dzięki temu poprawnie zamyka się apka
       frame.pack();
@@ -45,9 +47,7 @@ public class Game implements Runnable {
    }
    
         
-   private class MouseControl extends MouseAdapter{
-      
-   }
+ 
    
    long desiredFPS = 60;
     long desiredDeltaLoop = (1000*1000*1000)/desiredFPS;
