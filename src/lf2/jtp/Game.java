@@ -3,38 +3,37 @@ package lf2.jtp;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.image.BufferStrategy;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
-public class Game implements Runnable{
+public class Game implements Runnable {
    
-   final int WIDTH = 1000;
-   final int HEIGHT = 700;
+    Dimension d = Toolkit.getDefaultToolkit().getScreenSize(); // Pobranie rozdzielczości ekranu
    
-   JFrame frame;
-   Canvas canvas;
+   JFrame frame; // Okno głowne
+   Canvas canvas; // Obiekt potrzebny do rysowania
    BufferStrategy bufferStrategy;
    
    public Game(){
-      frame = new JFrame("Basic Game");
+      frame = new JFrame("LF2");
       
       JPanel panel = (JPanel) frame.getContentPane();
-      panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+      panel.setPreferredSize(new Dimension(d.width, d.height));
       panel.setLayout(null);
       
       canvas = new Canvas();
-      canvas.setBounds(0, 0, WIDTH, HEIGHT);
+      canvas.setBounds(0, 0, d.width, d.height);
       canvas.setIgnoreRepaint(true);
       
-      panel.add(canvas);
+      panel.add(canvas); //utworzenie okna + dodanie do niego canvas
       
-      canvas.addMouseListener(new MouseControl());
+      canvas.addMouseListener(new MouseControl()); //dodanie obsługi myszki
       
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Dzięki temu poprawnie zamyka się apka
       frame.pack();
       frame.setResizable(false);
       frame.setVisible(true);
@@ -89,7 +88,7 @@ public class Game implements Runnable{
    
    private void render() {
       Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
-      g.clearRect(0, 0, WIDTH, HEIGHT);
+      g.clearRect(0, 0, d.width, d.height);
       render(g);
       g.dispose();
       bufferStrategy.show();
@@ -103,7 +102,7 @@ public class Game implements Runnable{
     */
    protected void update(int deltaTime){
       x += deltaTime * 0.2;
-      while(x > 500){
+      while(x > 800){
          x -= 500;
       }
    }
@@ -112,7 +111,7 @@ public class Game implements Runnable{
     * Rewrite this method for your game
     */
    protected void render(Graphics2D g){
-      g.fillRect((int)x, 0, 200, 200);
+      g.fillRect((int)x, 0, 300, 200);
    }
    
    public static void main(String [] args){
