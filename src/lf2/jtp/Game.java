@@ -1,6 +1,6 @@
 package lf2.jtp;
 
-public class Gra {
+public class Game {
 
 
     public static void main(String[] args) {
