@@ -114,14 +114,14 @@ public class Game implements Runnable {
    /**
     * Rewrite this method for your game
     */
-   Font myFont = new Font("Arial", Font.BOLD, 30);
+   Font czcionkaMenu = new Font("Arial", Font.BOLD, 30);
    
    protected void render(Graphics2D g){
       
-      g.setColor(Color.GRAY);
+      g.setColor(new Color(0, 100, 100));
       g.fillRect(0, 0, d.width, d.height);
-      g.setFont(myFont);
-      g.setColor(Color.red);
+      g.setFont(czcionkaMenu);
+      g.setColor(new Color(0, 0, 100));
       g.drawString("Nowa Gra", 200, d.height-100);
       g.drawString("Opcje", 200, d.height-70);
    }
