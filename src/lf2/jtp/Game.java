@@ -1,7 +1,9 @@
 package lf2.jtp;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -9,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -26,7 +29,7 @@ public class Game implements Runnable {
       JPanel panel = (JPanel) frame.getContentPane();
       panel.setPreferredSize(new Dimension(d.width, d.height));
       panel.setLayout(null);
-      frame.setUndecorated(true);
+      frame.setUndecorated(true); // Brak górnej belki windows i basków bocznych
       canvas = new Canvas();
       canvas.setBounds(0, 0, d.width, d.height);
       canvas.setIgnoreRepaint(true);
@@ -34,6 +37,7 @@ public class Game implements Runnable {
       panel.add(canvas); //utworzenie okna + dodanie do niego canvas
       
       canvas.addMouseListener(new Control()); //dodanie obsługi myszki
+     
       
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Dzięki temu poprawnie zamyka się apka
       frame.pack();
@@ -50,7 +54,7 @@ public class Game implements Runnable {
  
    
    long desiredFPS = 60;
-    long desiredDeltaLoop = (1000*1000*1000)/desiredFPS;
+   long desiredDeltaLoop = (1000*1000*1000)/desiredFPS;
     
    boolean running = true;
    
@@ -110,8 +114,16 @@ public class Game implements Runnable {
    /**
     * Rewrite this method for your game
     */
+   Font myFont = new Font("Arial", Font.BOLD, 30);
+   
    protected void render(Graphics2D g){
-      g.fillRect((int)x, 0, 300, 200);
+      
+      g.setColor(Color.GRAY);
+      g.fillRect(0, 0, d.width, d.height);
+      g.setFont(myFont);
+      g.setColor(Color.red);
+      g.drawString("Nowa Gra", 200, d.height-100);
+      g.drawString("Opcje", 200, d.height-70);
    }
    
    public static void main(String [] args){
