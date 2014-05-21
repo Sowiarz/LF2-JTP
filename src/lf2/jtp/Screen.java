@@ -73,7 +73,10 @@ public class Screen {
     public void odswiez() {
        
         for(int i=0; i<StaticData.getNumberOfPlayers(); i++) {
-            if(StaticData.odbijanie) odbijOdSciany(i);
+            if(StaticData.odbijanie) {
+                if(i != 0)
+                    odbijOdSciany(i);
+            }
             if(i == 0) poruszanie(i);
             StaticData.getPlayer(i).rysuj();
         }
