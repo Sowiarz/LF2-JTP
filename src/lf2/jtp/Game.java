@@ -6,12 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -22,6 +18,7 @@ public class Game implements Runnable {
    JFrame frame; // Okno głowne
    Canvas canvas; // Obiekt potrzebny do rysowania
    BufferStrategy bufferStrategy;
+   Screen obiektScreen = new Screen();
    
    public Game(){
       frame = new JFrame("LF2");
@@ -36,7 +33,9 @@ public class Game implements Runnable {
       
       panel.add(canvas); //utworzenie okna + dodanie do niego canvas
       
-      canvas.addMouseListener(new Control()); //dodanie obsługi myszki
+      Control klawisze = new Control();
+      canvas.addMouseListener(klawisze); //dodanie obsługi myszki
+      canvas.addKeyListener(klawisze);
      
       
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Dzięki temu poprawnie zamyka się apka
@@ -48,6 +47,8 @@ public class Game implements Runnable {
       bufferStrategy = canvas.getBufferStrategy();
       
       canvas.requestFocus();
+      
+      
    }
    
         
@@ -92,9 +93,10 @@ public class Game implements Runnable {
    
    private void render() {
       Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
-      g.clearRect(0, 0, monitor.width, monitor.height);
-      render(g);
-      g.dispose();
+      StaticData.ekran = g;
+      StaticData.ekran.clearRect(0, 0, monitor.width, monitor.height);
+      render(StaticData.ekran);
+      StaticData.ekran.dispose();
       bufferStrategy.show();
    }
    
@@ -123,11 +125,10 @@ public class Game implements Runnable {
       g.setFont(czcionkaMenu);
       g.setColor(new Color(0, 0, 100));
       g.drawString("Nowa Gra", 200, monitor.height-100);
-      g.drawString("Opcje", 200, monitor.height-70);
-      String numer = Double.toString(x);
-      g.drawString(numer, 300, 100);
-      Screen nowy = new Screen(g, monitor);
-      nowy.pokaz();
+      g.drawString("Wyjście na ESC!", 200, monitor.height-70);
+      
+      
+      obiektScreen.Odswiez();
    }
    
    public static void main(String [] args){

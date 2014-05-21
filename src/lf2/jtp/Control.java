@@ -11,23 +11,33 @@ public class Control extends MouseAdapter implements KeyListener {
        public void mousePressed(MouseEvent e) {
           
           
-            System.exit(0); // Zamknięcie programu na kliknięcie
+            
            
         }
 
     @Override
     public void keyTyped(KeyEvent e) {
-         
+              
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(e.getKeyCode() == 27)
+             System.exit(0); // Zamyka apkę na ESC
+        if(e.getKeyCode() == 39)
+             StaticData.getPlayer(0).move_right();
+        if(e.getKeyCode() == 37)
+             StaticData.getPlayer(0).move_left();
+        if(e.getKeyCode() == 38)
+             StaticData.getPlayer(0).move_up();
+        if(e.getKeyCode() == 40)
+             StaticData.getPlayer(0).move_down();
+        // System.out.println(e.getKeyCode()); // pokazuje kod naciśniętego klawisza w konsoli
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
        
      
