@@ -25,13 +25,15 @@ public class Control extends MouseAdapter implements KeyListener {
         if(e.getKeyCode() == 27)
              System.exit(0); // Zamyka apkę na ESC
         if(e.getKeyCode() == 39)
-             StaticData.getPlayer(0).move_right();
+             StaticData.getPlayer(0).moveRight();
         if(e.getKeyCode() == 37)
-             StaticData.getPlayer(0).move_left();
+             StaticData.getPlayer(0).moveLeft();
         if(e.getKeyCode() == 38)
-             StaticData.getPlayer(0).move_up();
+             StaticData.getPlayer(0).moveUp();
         if(e.getKeyCode() == 40)
-             StaticData.getPlayer(0).move_down();
+             StaticData.getPlayer(0).moveDown();
+        if(e.getKeyCode() == 32)
+             StaticData.odbijanie = !StaticData.odbijanie;
         // System.out.println(e.getKeyCode()); // pokazuje kod naciśniętego klawisza w konsoli
     }
 

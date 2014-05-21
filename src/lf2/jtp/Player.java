@@ -21,20 +21,30 @@ public class Player {
         StaticData.ekran.finalize();
        
     }
-    public void move_right() {
-        pozx+=5;
+    public void moveRight() {
+        pozx+=4;
         rysuj();
     } 
-    public void move_left() {
-        pozx-=5;
+    public void moveLeft() {
+        pozx-=4;
         rysuj();
     }
-    public void move_down() {
-        pozy+=5;
+    public void moveDown() {
+        pozy+=4;
         rysuj();
     }
-    public void move_up() {
-        pozy-=5;
+    public void moveUp() {
+        pozy-=4;
         rysuj();
+    }
+    public void setPosition(int x, int y) {
+        pozy = x;
+        pozy = y;
+    }
+    public int getXPosition() {
+        return pozx;
+    }
+    public int getYPosition() {
+        return pozy;
     }
 }

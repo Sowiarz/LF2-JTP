@@ -9,7 +9,11 @@ public class StaticData {
     
     // pola startczne do użytku w całej aplikacji
     public static Graphics2D ekran; // trzyma obiekt "g" czyli uchwyt do rysowania
-    public static Dimension rozdzielczosc; // można z niego odczytać rozdzielczość
+    public static int screenWidth; // szerokosc ekranu
+    public static int screenHeight; // wysokość ekranu
+    
+    // zmienne testowe
+    public static boolean odbijanie = true;
     
     // listy z używanymi obiektami
     private static ArrayList<Player> gracze = new ArrayList<Player>();

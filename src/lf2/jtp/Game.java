@@ -20,6 +20,7 @@ public class Game implements Runnable {
    BufferStrategy bufferStrategy;
    Screen obiektScreen = new Screen();
    
+   
    public Game(){
       frame = new JFrame("LF2");
       
@@ -45,7 +46,9 @@ public class Game implements Runnable {
       
       canvas.createBufferStrategy(2);
       bufferStrategy = canvas.getBufferStrategy();
-      
+      System.out.println("Rozdzielczość: " + monitor.width + "x" +  monitor.height);
+      StaticData.screenWidth = monitor.width;
+      StaticData.screenHeight = monitor.height;
       canvas.requestFocus();
       
       
@@ -124,11 +127,11 @@ public class Game implements Runnable {
       g.fillRect(0, 0, monitor.width, monitor.height);
       g.setFont(czcionkaMenu);
       g.setColor(new Color(0, 0, 100));
-      g.drawString("Nowa Gra", 200, monitor.height-100);
+      g.drawString("Spacja wyłącza odbijanie od ścian. Sterowanie strzałkami.", 200, monitor.height-100);
       g.drawString("Wyjście na ESC!", 200, monitor.height-70);
       
       
-      obiektScreen.Odswiez();
+      obiektScreen.odswiez();
    }
    
    public static void main(String [] args){
