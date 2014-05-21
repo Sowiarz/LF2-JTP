@@ -15,43 +15,44 @@ public class Screen {
     
     public Screen() {
         Player pierwszy = new Player();
-        //Player drugi = new Player();
-        StaticData.addPlayer(pierwszy);
-        //StaticData.addPlayer(drugi);
+        StaticData.addPlayer(pierwszy); // tworzenie gracza głownego
         
+        for(int i=0; i<10; i++) { //tworzenie graczy dodatkowych      
+            StaticData.addPlayer(new Player(1366,768)); // liczby to rozdzielczość ekranu
+        }
         
     }
     private void odbijOdSciany(int i) {
             if(StaticData.getPlayer(i).getXPosition() >= StaticData.screenWidth-70) {
-                prawa = true;
-                lewa = false;
+                StaticData.getPlayer(i).prawa = true;
+                StaticData.getPlayer(i).lewa = false;
             }
             if(StaticData.getPlayer(i).getXPosition() <= 0-20) {
-                prawa = false;
-                lewa = true;
+                StaticData.getPlayer(i).prawa = false;
+                StaticData.getPlayer(i).lewa = true;
             }
             if(StaticData.getPlayer(i).getYPosition() >= StaticData.screenHeight-70) {
-                dol = true;
-                gora = false;
+                StaticData.getPlayer(i).dol = true;
+                StaticData.getPlayer(i).gora = false;
             }
             if(StaticData.getPlayer(i).getYPosition() <= 0-20) {
-                dol = false;
-                gora = true;
+                StaticData.getPlayer(i).dol = false;
+                StaticData.getPlayer(i).gora = true;
             }
             
-            if(lewa && gora) {
+            if(StaticData.getPlayer(i).lewa && StaticData.getPlayer(i).gora) {
                 StaticData.getPlayer(i).moveRight();
                 StaticData.getPlayer(i).moveDown();  
             }
-            if(lewa && dol) {
+            if(StaticData.getPlayer(i).lewa && StaticData.getPlayer(i).dol) {
                 StaticData.getPlayer(i).moveRight();
                 StaticData.getPlayer(i).moveUp();
             }            
-            if(prawa && gora) {
+            if(StaticData.getPlayer(i).prawa && StaticData.getPlayer(i).gora) {
                 StaticData.getPlayer(i).moveLeft();
                 StaticData.getPlayer(i).moveDown();  
             }
-            if(prawa && dol) {
+            if(StaticData.getPlayer(i).prawa && StaticData.getPlayer(i).dol) {
                 StaticData.getPlayer(i).moveLeft();
                 StaticData.getPlayer(i).moveUp();
             }
@@ -73,7 +74,7 @@ public class Screen {
        
         for(int i=0; i<StaticData.getNumberOfPlayers(); i++) {
             if(StaticData.odbijanie) odbijOdSciany(i);
-            poruszanie(i);
+            if(i == 0) poruszanie(i);
             StaticData.getPlayer(i).rysuj();
         }
     }
