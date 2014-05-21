@@ -15,7 +15,9 @@ public class Screen {
     
     public Screen() {
         Player pierwszy = new Player();
+        //Player drugi = new Player();
         StaticData.addPlayer(pierwszy);
+        //StaticData.addPlayer(drugi);
         
         
     }
@@ -54,11 +56,26 @@ public class Screen {
                 StaticData.getPlayer(i).moveUp();
             }
     }
+    
+    private void poruszanie(int i) {
+        if(Control.left)
+            StaticData.getPlayer(i).moveLeft();
+        if(Control.down)
+            StaticData.getPlayer(i).moveDown();
+        if(Control.up)
+            StaticData.getPlayer(i).moveUp();
+        if(Control.right)
+            StaticData.getPlayer(i).moveRight();
+    
+    }
+    
     public void odswiez() {
        
         for(int i=0; i<StaticData.getNumberOfPlayers(); i++) {
             if(StaticData.odbijanie) odbijOdSciany(i);
+            poruszanie(i);
             StaticData.getPlayer(i).rysuj();
         }
-    }    
+    }
+    
 }

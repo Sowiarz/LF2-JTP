@@ -22,19 +22,31 @@ public class Player {
        
     }
     public void moveRight() {
-        pozx+=4;
+        if(pozx >= StaticData.screenWidth-70) 
+                pozx = StaticData.screenWidth-70;
+        else 
+                pozx+=4;
         rysuj();
     } 
     public void moveLeft() {
-        pozx-=4;
+        if(pozx <= -20) 
+                pozx = -20;
+        else
+                pozx-=4;
         rysuj();
     }
     public void moveDown() {
-        pozy+=4;
+        if(pozy >= StaticData.screenHeight-70)
+                pozy = StaticData.screenHeight-70;
+        else
+                pozy+=4;
         rysuj();
     }
     public void moveUp() {
-        pozy-=4;
+        if(pozy <= -20)
+                pozy = -20;
+        else 
+                pozy-=4;
         rysuj();
     }
     public void setPosition(int x, int y) {
