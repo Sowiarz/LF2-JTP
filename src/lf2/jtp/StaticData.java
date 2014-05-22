@@ -2,10 +2,11 @@ package lf2.jtp;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class StaticData {
-    
+   
     // pola startczne do użytku w całej aplikacji
     public static Graphics2D ekran; // trzyma obiekt "g" czyli uchwyt do rysowania
     public static int screenWidth; // szerokosc ekranu
@@ -30,5 +31,8 @@ public class StaticData {
     }
     public static int getNumberOfPlayers() {
         return gracze.size();
+    }
+    public static void removaPlayer(int id) {
+        gracze.remove(id);
     }
 }

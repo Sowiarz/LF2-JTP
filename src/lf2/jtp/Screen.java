@@ -8,16 +8,12 @@ import java.awt.Toolkit;
 
 public class Screen {
     
-    boolean prawa = false;
-    boolean lewa = true;
-    boolean dol = false;
-    boolean gora = true;
     
     public Screen() {
         Player pierwszy = new Player();
         StaticData.addPlayer(pierwszy); // tworzenie gracza głownego
         
-        for(int i=0; i<10; i++) { //tworzenie graczy dodatkowych      
+        for(int i=0; i<5; i++) { //tworzenie graczy dodatkowych      
             StaticData.addPlayer(new Player(1366,768)); // liczby to rozdzielczość ekranu
         }
         
@@ -59,13 +55,15 @@ public class Screen {
     }
     
     private void poruszanie(int i) {
-        if(Control.left)
+        
+        
+        if(Control.ifLeft())
             StaticData.getPlayer(i).moveLeft();
-        if(Control.down)
+        if(Control.ifDown())
             StaticData.getPlayer(i).moveDown();
-        if(Control.up)
+        if(Control.ifUp())
             StaticData.getPlayer(i).moveUp();
-        if(Control.right)
+        if(Control.ifRight())
             StaticData.getPlayer(i).moveRight();
     
     }

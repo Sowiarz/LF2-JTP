@@ -1,11 +1,7 @@
 package lf2.jtp;
 
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import static java.lang.Math.*;
 import java.util.Random;
 
 
