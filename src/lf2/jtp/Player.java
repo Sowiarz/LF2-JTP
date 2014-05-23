@@ -2,12 +2,15 @@ package lf2.jtp;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.util.Random;
 
 
 public class Player {
     private int pozx;
     private int pozy;
+    
+    public ControlPlayer sterowanie;
     
     public boolean prawa = false;
     public boolean lewa = true;
@@ -20,6 +23,8 @@ public class Player {
     public Player() {
         pozx = 30;
         pozy = 30;
+        
+        sterowanie = new ControlPlayer(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN);
     }
     public Player(int szer, int wys) {
             Random generator = new Random();
@@ -66,14 +71,31 @@ public class Player {
                 pozy-=4;
         rysuj();
     }
+    
     public void setPosition(int x, int y) {
         pozy = x;
         pozy = y;
     }
+    
     public int getXPosition() {
         return pozx;
     }
     public int getYPosition() {
         return pozy;
+    }
+    
+    // Metody zwracające sterowanie
+    
+    public int getControlUp() {
+        return sterowanie.getUp();
+    }
+    public int getControlDown() {
+        return sterowanie.getDown();
+    }
+    public int getControlLeft() {
+        return sterowanie.getLeft();
+    }
+    public int getControlRight() {
+        return sterowanie.getRight();
     }
 }

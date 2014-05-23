@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Control extends MouseAdapter implements KeyListener {
@@ -79,6 +80,9 @@ public class Control extends MouseAdapter implements KeyListener {
             return true;
         else
             return false;
-    }       
+    }   
+    public static HashMap<Integer, Boolean> getControl() {
+        return nacisnieteKlawisze;
+    }
      
 }

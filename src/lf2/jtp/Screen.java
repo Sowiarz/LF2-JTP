@@ -4,10 +4,12 @@ package lf2.jtp;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.util.HashMap;
 
 
 public class Screen {
-    
+    private int ScreenW = StaticData.screenWidth;
+    private int ScreenH = StaticData.screenHeight;
     
     public Screen() {
         Player pierwszy = new Player();
@@ -55,16 +57,25 @@ public class Screen {
     }
     
     private void poruszanie(int i) {
-        
-        
-        if(Control.ifLeft())
-            StaticData.getPlayer(i).moveLeft();
-        if(Control.ifDown())
-            StaticData.getPlayer(i).moveDown();
-        if(Control.ifUp())
-            StaticData.getPlayer(i).moveUp();
-        if(Control.ifRight())
-            StaticData.getPlayer(i).moveRight();
+        try {
+            for(Integer key : Control.getControl().keySet()) { // pętla for-each - iteracja po każdym elemencie naciśniętego klawisza
+
+                if(StaticData.getPlayer(i).getControlRight() == key) //Sprawdzanie czy naciśnięty przycisk pasuje do sterowania danego gracza
+                   StaticData.getPlayer(i).moveRight();
+
+                if(StaticData.getPlayer(i).getControlLeft() == key) 
+                   StaticData.getPlayer(i).moveLeft();
+
+                if(StaticData.getPlayer(i).getControlDown() == key) 
+                   StaticData.getPlayer(i).moveDown();
+
+                if(StaticData.getPlayer(i).getControlUp() == key) 
+                   StaticData.getPlayer(i).moveUp();
+            }
+        }
+        catch (Exception e) {
+           // Gdyby tego nie było wywalał by błąd raz na 5 przypadków :D
+        }
     
     }
     
