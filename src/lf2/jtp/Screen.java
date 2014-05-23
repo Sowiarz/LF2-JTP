@@ -4,6 +4,7 @@ package lf2.jtp;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 
@@ -15,7 +16,11 @@ public class Screen {
         Player pierwszy = new Player();
         StaticData.addPlayer(pierwszy); // tworzenie gracza głownego
         
-        for(int i=0; i<5; i++) { //tworzenie graczy dodatkowych      
+        ControlPlayer klawisze = new ControlPlayer(KeyEvent.VK_D, KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_S);
+        Player drugi = new Player(klawisze);
+        StaticData.addPlayer(drugi); // tworzenie gracza głownego
+        
+        for(int i=0; i<1; i++) { //tworzenie graczy dodatkowych      
             StaticData.addPlayer(new Player(1366,768)); // liczby to rozdzielczość ekranu
         }
         
@@ -83,11 +88,11 @@ public class Screen {
        
         for(int i=0; i<StaticData.getNumberOfPlayers(); i++) {
             if(StaticData.odbijanie) {
-                if(i != 0)
-                    odbijOdSciany(i);
+            if(StaticData.getPlayer(i).getSamowola()) // sprawdza czy dany gracz ma włączoną samowole
+                    odbijOdSciany(i); // jesli tak to odbija go od ściany
             }
-            if(i == 0) poruszanie(i);
-            StaticData.getPlayer(i).rysuj();
+            poruszanie(i); // odpowiada za sterowanie danym graczem
+            StaticData.getPlayer(i).rysuj(); // na koniec pokazuje gracza po wszystkich przesunięciach
         }
     }
     
