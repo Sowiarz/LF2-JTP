@@ -1,12 +1,12 @@
 package lf2.jtp;
 
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
-import javax.swing.ImageIcon;
-import javax.imageio.ImageIO;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Player {
@@ -14,16 +14,9 @@ public class Player {
     private int pozx;
     private int pozy;
     private int stan;
-    
-    private Image img1;
-    private BufferedImage bigImg;
-            
-    private int textheight;
-    private int textwidth;
-    private int rows;
-    private int cols;
-    BufferedImage tekstury[]= new BufferedImage[rows*cols];
-    
+    private int animationdelay = 83;
+    public long time;
+   
     public ControlPlayer sterowanie;
     
     public boolean prawa = false;
@@ -33,6 +26,17 @@ public class Player {
     
     private int screenHeight = StaticData.screenHeight;
     private int screenWidth = StaticData.screenWidth; 
+    
+    public static BufferedImage[] obrazek;
+    static{
+        try {
+            obrazek=LoadPicture.wczytaj();
+        } catch (IOException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+
     
     public Player() {
        
@@ -73,62 +77,61 @@ public class Player {
     }
     
     
-    public void rysuj() {
-        /*Image imgs[] = new Image[3];
-        imgs[0] = Toolkit.getDefaultToolkit().getImage("mar21.png");
-        imgs[1] = Toolkit.getDefaultToolkit().getImage("mar22.png");
-        imgs[2] = Toolkit.getDefaultToolkit().getImage("mar23.png");
-        */
-               
-        bigImg = ImageIO.read("mario.png");
-        
-        
-        for (int i = 0; i < rows; i++)
-            {
-            for (int j = 0; j < cols; j++)
-                 {
-                    tekstury[(i * cols) + j] = bigImg.getSubimage(j * textwidth,i * textheight,textwidth,textheight);
-                 }
-            }
-        boolean drawImage = StaticData.ekran.drawImage(imgs[stan], pozx, pozy, null);
-        StaticData.ekran.finalize();
-        
-       
-    }
-    public Image getImage(){
-        return img1;
+    public void rysuj() { 
+       boolean drawImage = StaticData.ekran.drawImage(obrazek[stan], pozx, pozy, null);
     }
     public void moveRight() {
         if(pozx >= StaticData.screenWidth-70) 
                 pozx = StaticData.screenWidth-70;
         else 
                 pozx+=4;
-        stan=1;
         rysuj();
-    } 
+        if (time + 100 < System.currentTimeMillis()) {
+            time = System.currentTimeMillis();
+            if(stan > 1)
+            stan=0;
+            stan++;
+        }
+    }
+   
     public void moveLeft() {
         if(pozx <= -20) 
                 pozx = -20;
         else
                 pozx-=4;
-        stan=2;
         rysuj();
+        if (time + 100 < System.currentTimeMillis()) {
+            time = System.currentTimeMillis();
+            if(stan > 4 || stan < 3)
+            stan=3;
+            stan++;
+        }
     }
     public void moveDown() {
         if(pozy >= StaticData.screenHeight-70)
                 pozy = StaticData.screenHeight-70;
         else
                 pozy+=4;
-        stan = 0;
         rysuj();
+        if (time + 100 < System.currentTimeMillis()) {
+            time = System.currentTimeMillis();
+            if(stan > 7 || stan < 6)
+            stan=6;
+            stan++;
+        }
     }
     public void moveUp() {
         if(pozy <= -20)
                 pozy = -20;
         else 
                 pozy-=4;
-        stan = 1;
         rysuj();
+        if (time + 100 < System.currentTimeMillis()) {
+            time = System.currentTimeMillis();
+            if(stan > 10 || stan < 9)
+            stan=9;
+            stan++;
+        }
     }
     
     public void setPosition(int x, int y) {
