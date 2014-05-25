@@ -3,13 +3,26 @@ package lf2.jtp;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.Random;
+import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
 
 
 public class Player {
     private boolean samowola; // jesli true to steruje komputer;
     private int pozx;
     private int pozy;
+    private int stan;
+    
+    private Image img1;
+    private BufferedImage bigImg;
+            
+    private int textheight;
+    private int textwidth;
+    private int rows;
+    private int cols;
+    BufferedImage tekstury[]= new BufferedImage[rows*cols];
     
     public ControlPlayer sterowanie;
     
@@ -22,10 +35,11 @@ public class Player {
     private int screenWidth = StaticData.screenWidth; 
     
     public Player() {
+       
         samowola = false;
         pozx = 30;
         pozy = 30;
-        
+        stan = 0;
         sterowanie = new ControlPlayer(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN);
     }
     public Player(int szer, int wys) {
@@ -60,17 +74,36 @@ public class Player {
     
     
     public void rysuj() {
-        Image img1 = Toolkit.getDefaultToolkit().getImage("mario.png");
-        boolean drawImage = StaticData.ekran.drawImage(img1, pozx, pozy, null);
+        /*Image imgs[] = new Image[3];
+        imgs[0] = Toolkit.getDefaultToolkit().getImage("mar21.png");
+        imgs[1] = Toolkit.getDefaultToolkit().getImage("mar22.png");
+        imgs[2] = Toolkit.getDefaultToolkit().getImage("mar23.png");
+        */
+               
+        bigImg = ImageIO.read("mario.png");
+        
+        
+        for (int i = 0; i < rows; i++)
+            {
+            for (int j = 0; j < cols; j++)
+                 {
+                    tekstury[(i * cols) + j] = bigImg.getSubimage(j * textwidth,i * textheight,textwidth,textheight);
+                 }
+            }
+        boolean drawImage = StaticData.ekran.drawImage(imgs[stan], pozx, pozy, null);
         StaticData.ekran.finalize();
         
        
+    }
+    public Image getImage(){
+        return img1;
     }
     public void moveRight() {
         if(pozx >= StaticData.screenWidth-70) 
                 pozx = StaticData.screenWidth-70;
         else 
                 pozx+=4;
+        stan=1;
         rysuj();
     } 
     public void moveLeft() {
@@ -78,6 +111,7 @@ public class Player {
                 pozx = -20;
         else
                 pozx-=4;
+        stan=2;
         rysuj();
     }
     public void moveDown() {
@@ -85,6 +119,7 @@ public class Player {
                 pozy = StaticData.screenHeight-70;
         else
                 pozy+=4;
+        stan = 0;
         rysuj();
     }
     public void moveUp() {
@@ -92,6 +127,7 @@ public class Player {
                 pozy = -20;
         else 
                 pozy-=4;
+        stan = 1;
         rysuj();
     }
     
