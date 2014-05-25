@@ -20,12 +20,14 @@ public class Screen {
         Player drugi = new Player(klawisze);
         StaticData.addPlayer(drugi); // tworzenie gracza głownego
         
-        for(int i=0; i<1; i++) { //tworzenie graczy dodatkowych      
-            StaticData.addPlayer(new Player(1366,768)); // liczby to rozdzielczość ekranu
+        for(int i=0; i<2; i++) { //tworzenie graczy dodatkowych      
+
+            StaticData.addPlayer(new Player(StaticData.screenWidth, StaticData.screenHeight)); // liczby to rozdzielczość ekranu
         }
         
     }
     private void odbijOdSciany(int i) {
+            
             if(StaticData.getPlayer(i).getXPosition() >= StaticData.screenWidth-70) {
                 StaticData.getPlayer(i).prawa = true;
                 StaticData.getPlayer(i).lewa = false;

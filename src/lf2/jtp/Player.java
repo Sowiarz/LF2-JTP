@@ -46,8 +46,8 @@ public class Player {
             samowola = true;
             Random generator = new Random();
                    
-            pozx = generator.nextInt() % szer;
-            pozy = generator.nextInt() % wys;
+            pozx = Math.abs(generator.nextInt() % szer);
+            pozy = Math.abs(generator.nextInt() % wys);
   
 //        pozx = (int)(Math.random() * rangex);
 //        pozy = (int)(Math.random() * rangey);
