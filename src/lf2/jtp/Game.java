@@ -125,7 +125,7 @@ public class Game implements Runnable {
    
    protected void render(Graphics2D g){
       
-      g.setColor(new Color(0, 100, 100));
+      g.setColor(new Color(0, 0, 0));
       g.fillRect(0, 0, monitor.width, monitor.height);
       g.setFont(czcionkaMenu);
       g.setColor(new Color(0, 0, 100));
