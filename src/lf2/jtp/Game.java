@@ -18,10 +18,14 @@ public class Game implements Runnable {
    JFrame frame; // Okno głowne
    Canvas canvas; // Obiekt potrzebny do rysowania
    BufferStrategy bufferStrategy;
-   Screen obiektScreen = new Screen();
+   Screen obiektScreen;
    
    
    public Game(){
+      StaticData.screenWidth = monitor.width;
+      StaticData.screenHeight = monitor.height;
+       
+      obiektScreen = new Screen();
       frame = new JFrame("LF2");
       
       JPanel panel = (JPanel) frame.getContentPane();
@@ -47,8 +51,6 @@ public class Game implements Runnable {
       canvas.createBufferStrategy(2);
       bufferStrategy = canvas.getBufferStrategy();
       System.out.println("Rozdzielczość: " + monitor.width + "x" +  monitor.height);
-      StaticData.screenWidth = monitor.width;
-      StaticData.screenHeight = monitor.height;
       canvas.requestFocus();
       
       
