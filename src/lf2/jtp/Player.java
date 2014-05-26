@@ -1,4 +1,4 @@
-package lf2.jtp;
+    package lf2.jtp;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,8 +13,7 @@ public class Player {
     private boolean samowola; // jesli true to steruje komputer;
     private int pozx;
     private int pozy;
-    private int stan;
-    private int animationdelay = 83;
+    private int stan = 0;
     public long time;
    
     public ControlPlayer sterowanie;
@@ -27,6 +26,7 @@ public class Player {
     private int screenHeight = StaticData.screenHeight;
     private int screenWidth = StaticData.screenWidth; 
     
+    
     public static BufferedImage[] obrazek;
     static{
         try {
@@ -38,42 +38,26 @@ public class Player {
     
 
     
-    public Player() {
-       
+    public Player() { 
+        this((Math.abs(new Random().nextInt()) % StaticData.screenWidth),(Math.abs(new Random().nextInt()) % StaticData.screenHeight), new ControlPlayer());
         samowola = false;
-        pozx = 30;
-        pozy = 30;
-        stan = 0;
-        sterowanie = new ControlPlayer(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN);
     }
-    public Player(int szer, int wys) {
-            samowola = true;
-            Random generator = new Random();
-                   
-            pozx = Math.abs(generator.nextInt() % szer);
-            pozy = Math.abs(generator.nextInt() % wys);
-  
-//        pozx = (int)(Math.random() * rangex);
-//        pozy = (int)(Math.random() * rangey);
+    
+    public Player(int x, int y) {
+        this(x, y, new ControlPlayer());
+        samowola = true;
     }
-    public Player(int szer, int wys, ControlPlayer keys) {
-            samowola = true;
-            sterowanie = keys;
-            Random generator = new Random();
-                   
-            pozx = generator.nextInt() % szer;
-            pozy = generator.nextInt() % wys;
-  
-//        pozx = (int)(Math.random() * rangex);
-//        pozy = (int)(Math.random() * rangey);
+    
+    public Player(int x, int y, ControlPlayer keys) {
+        samowola = true;
+        sterowanie = keys;
+        pozx = x;
+        pozy = y;
     }
+    
     public Player(ControlPlayer keys) {
-            samowola = false;
-            sterowanie = keys;
-      
-  
-//        pozx = (int)(Math.random() * rangex);
-//        pozy = (int)(Math.random() * rangey);
+        this((Math.abs(new Random().nextInt()) % StaticData.screenWidth),(Math.abs(new Random().nextInt()) % StaticData.screenHeight),keys);
+        samowola = false;
     }
     
     

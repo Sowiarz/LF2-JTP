@@ -17,10 +17,12 @@ public class ControlPlayer {
         Up = u;
     }
     public ControlPlayer() {
-        Left = KeyEvent.VK_LEFT;
-        Right = KeyEvent.VK_RIGHT;
-        Up = KeyEvent.VK_UP;
-        Down = KeyEvent.VK_DOWN;
+        this(0, 0, 0, 0);
+        
+//        Left = KeyEvent.VK_LEFT;
+//        Right = KeyEvent.VK_RIGHT;
+//        Up = KeyEvent.VK_UP;
+//        Down = KeyEvent.VK_DOWN;
     }
     public void setUp(int i) {
         Up = i;

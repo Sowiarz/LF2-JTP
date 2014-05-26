@@ -13,7 +13,7 @@ public class Screen {
     private int ScreenH = StaticData.screenHeight;
     
     public Screen() {
-        Player pierwszy = new Player();
+        Player pierwszy = new Player(new ControlPlayer(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN));
         StaticData.addPlayer(pierwszy); // tworzenie gracza głownego
         
         ControlPlayer klawisze = new ControlPlayer(KeyEvent.VK_D, KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_S);
