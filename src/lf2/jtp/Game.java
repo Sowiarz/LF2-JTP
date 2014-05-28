@@ -24,6 +24,8 @@ public class Game implements Runnable {
    public Game(){
       StaticData.screenWidth = monitor.width;
       StaticData.screenHeight = monitor.height;
+      StaticData.x2 = monitor.width - 20;
+      StaticData.y2 = monitor.height - 110;
        
       obiektScreen = new Screen();
       frame = new JFrame("LF2");
@@ -39,7 +41,7 @@ public class Game implements Runnable {
       panel.add(canvas); //utworzenie okna + dodanie do niego canvas
       
       Control klawisze = new Control();
-      canvas.addMouseListener(klawisze); //dodanie obsługi myszki
+      
       canvas.addKeyListener(klawisze);
      
       
@@ -116,23 +118,10 @@ public class Game implements Runnable {
       while(x > 500){
          x -= 500;
       }
-   }
-   
-   /**
-    * Rewrite this method for your game
-    */
-   Font czcionkaMenu = new Font("Arial", Font.BOLD, 30);
+   }   
    
    protected void render(Graphics2D g){
-      
-      g.setColor(new Color(0, 0, 0));
-      g.fillRect(0, 0, monitor.width, monitor.height);
-      g.setFont(czcionkaMenu);
-      g.setColor(new Color(0, 0, 100));
-      g.drawString("Spacja wyłącza odbijanie od ścian. Sterowanie strzałkami.", 200, monitor.height-100);
-      g.drawString("Wyjście na ESC!", 200, monitor.height-70);
-      
-      
+
       obiektScreen.odswiez();
    }
    

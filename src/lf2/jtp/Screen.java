@@ -20,9 +20,9 @@ public class Screen {
         Player drugi = new Player(klawisze);
         StaticData.addPlayer(drugi); // tworzenie gracza głownego
         
-        for(int i=0; i<2; i++) { //tworzenie graczy dodatkowych      
+        for(int i=0; i<1; i++) { //tworzenie graczy dodatkowych      
 
-            StaticData.addPlayer(new Player(StaticData.screenWidth, StaticData.screenHeight)); // liczby to rozdzielczość ekranu
+            StaticData.addPlayer(new Player()); // liczby to rozdzielczość ekranu
         }
         
     }
@@ -87,7 +87,7 @@ public class Screen {
     }
     
     public void odswiez() {
-       
+        Ui.rysujPlansze();
         for(int i=0; i<StaticData.getNumberOfPlayers(); i++) {
             if(StaticData.odbijanie) {
             if(StaticData.getPlayer(i).getSamowola()) // sprawdza czy dany gracz ma włączoną samowole
@@ -95,6 +95,7 @@ public class Screen {
             }
             poruszanie(i); // odpowiada za sterowanie danym graczem
             StaticData.getPlayer(i).rysuj(); // na koniec pokazuje gracza po wszystkich przesunięciach
+            System.out.println("X:" + StaticData.getPlayer(0).getXPosition()+ " Y:" + StaticData.getPlayer(0).getYPosition());
         }
     }
     

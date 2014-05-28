@@ -2,6 +2,8 @@
 package lf2.jtp;
 
 import java.awt.event.KeyEvent;
+import java.util.Observable;
+import java.util.Observer;
 
 public class ControlPlayer {
     private int Left;
@@ -18,11 +20,6 @@ public class ControlPlayer {
     }
     public ControlPlayer() {
         this(0, 0, 0, 0);
-        
-//        Left = KeyEvent.VK_LEFT;
-//        Right = KeyEvent.VK_RIGHT;
-//        Up = KeyEvent.VK_UP;
-//        Down = KeyEvent.VK_DOWN;
     }
     public void setUp(int i) {
         Up = i;
@@ -48,5 +45,6 @@ public class ControlPlayer {
     public int getRight() {
         return Right;
     }
+
     
 }

@@ -23,12 +23,9 @@ public class Player {
     public boolean dol = false;
     public boolean gora = true;
     
-    private int screenHeight = StaticData.screenHeight;
-    private int screenWidth = StaticData.screenWidth; 
-    
     
     public static BufferedImage[] obrazek;
-    static{
+    static {
         try {
             obrazek=LoadPicture.wczytaj();
         } catch (IOException ex) {
@@ -39,8 +36,8 @@ public class Player {
 
     
     public Player() { 
-        this((Math.abs(new Random().nextInt()) % StaticData.screenWidth),(Math.abs(new Random().nextInt()) % StaticData.screenHeight), new ControlPlayer());
-        samowola = false;
+        this(StaticData.losujSzerokosc(),StaticData.losujWysokosc(), new ControlPlayer());
+        samowola = true;
     }
     
     public Player(int x, int y) {
@@ -56,17 +53,21 @@ public class Player {
     }
     
     public Player(ControlPlayer keys) {
-        this((Math.abs(new Random().nextInt()) % StaticData.screenWidth),(Math.abs(new Random().nextInt()) % StaticData.screenHeight),keys);
+        this(StaticData.losujSzerokosc(), StaticData.losujWysokosc(), keys);
         samowola = false;
     }
+    
+
     
     
     public void rysuj() { 
        boolean drawImage = StaticData.ekran.drawImage(obrazek[stan], pozx, pozy, null);
     }
+    
+    // Ruchy
     public void moveRight() {
-        if(pozx >= StaticData.screenWidth-70) 
-                pozx = StaticData.screenWidth-70;
+        if(pozx >= StaticData.x2-StaticData.playerWidth) 
+                pozx = StaticData.x2-StaticData.playerWidth;
         else 
                 pozx+=4;
         rysuj();
@@ -79,8 +80,8 @@ public class Player {
     }
    
     public void moveLeft() {
-        if(pozx <= -20) 
-                pozx = -20;
+        if(pozx <= StaticData.x1) 
+                pozx = StaticData.x1;
         else
                 pozx-=4;
         rysuj();
@@ -92,8 +93,8 @@ public class Player {
         }
     }
     public void moveDown() {
-        if(pozy >= StaticData.screenHeight-70)
-                pozy = StaticData.screenHeight-70;
+        if(pozy >= StaticData.y2+StaticData.playerHeight-30)
+                pozy = StaticData.y2+StaticData.playerHeight-30;
         else
                 pozy+=4;
         rysuj();
@@ -105,8 +106,8 @@ public class Player {
         }
     }
     public void moveUp() {
-        if(pozy <= -20)
-                pozy = -20;
+        if(pozy <= StaticData.y1)
+                pozy = StaticData.y1;
         else 
                 pozy-=4;
         rysuj();
@@ -118,6 +119,19 @@ public class Player {
         }
     }
     
+    private boolean czyBrakKolizji() {
+        int me = StaticData.IndexOf(this);
+        for(int i = 0; i < StaticData.getNumberOfPlayers(); i++) {
+            if(i == me) 
+                continue;
+            int x1 = StaticData.getPlayer(i).getXPosition();
+            int y1 = StaticData.getPlayer(i).getYPosition();
+        }
+        
+            return true;
+    }
+    
+    // Ustawienia
     public void setPosition(int x, int y) {
         pozy = x;
         pozy = y;
@@ -126,6 +140,8 @@ public class Player {
     public void setSamowola(boolean s) {
         samowola = s;
     }
+    
+    // Sprawdzanie informacji
     
     public int getXPosition() {
         return pozx;

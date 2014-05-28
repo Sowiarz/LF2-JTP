@@ -1,22 +1,14 @@
 package lf2.jtp;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
 
-public class Control extends MouseAdapter implements KeyListener {
+public class Control implements KeyListener {
     
     // Trzymanie HashMapy naciśniętych klawiszy 
     private static HashMap<Integer, Boolean> nacisnieteKlawisze = new HashMap<Integer, Boolean>();
-    
-
-    public void mousePressed(MouseEvent e) {
-          
-    }
 
     @Override
     public void keyTyped(KeyEvent e) {
