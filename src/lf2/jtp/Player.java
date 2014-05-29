@@ -63,9 +63,6 @@ public class Player {
     public void rysuj() { 
        boolean drawImage = StaticData.ekran.drawImage(obrazek[stan], pozx, pozy, null);
        
-       // TESTY
-       if(czyKolizja())
-           StaticData.ekran.drawString("Kolizja!", 60, 60);
     }
     
     // Ruchy
@@ -74,6 +71,8 @@ public class Player {
                 pozx = StaticData.screenWidth-StaticData.x2-StaticData.playerWidth;
         else 
                 pozx+=4;
+        if(czyKolizja())
+            pozx-=4;
 
         rysuj();
         if (time + 100 < System.currentTimeMillis()) {
@@ -89,6 +88,8 @@ public class Player {
                 pozx = StaticData.x1;
         else
                 pozx-=4;
+        if(czyKolizja())
+            pozx+=4;
 
         rysuj();
         if (time + 100 < System.currentTimeMillis()) {
@@ -103,6 +104,8 @@ public class Player {
                 pozy = StaticData.screenHeight-StaticData.y2-StaticData.playerHeight;
         else
                 pozy+=4;
+        if(czyKolizja())
+            pozy-=4;
 
         rysuj();
         if (time + 100 < System.currentTimeMillis()) {
@@ -117,6 +120,8 @@ public class Player {
                 pozy = StaticData.y1;
         else 
                 pozy-=4;
+        if(czyKolizja())
+            pozy+=4;
         rysuj();
         if (time + 100 < System.currentTimeMillis()) {
             time = System.currentTimeMillis();
@@ -132,7 +137,7 @@ public class Player {
             if(i != me) {                
                 int x1 = StaticData.getPlayer(i).getXPosition();
                 int y1 = StaticData.getPlayer(i).getYPosition();
-                if((pozx < x1+StaticData.playerWidth) && (pozx > x1)&& (pozy < y1+StaticData.playerHeight) && (pozy > y1))
+                if((pozx < x1+StaticData.playerWidth) && (pozx > x1-StaticData.playerWidth) && (pozy < y1+StaticData.playerHeight) && (pozy > y1-StaticData.playerHeight))
                     return true;
             }
         }
