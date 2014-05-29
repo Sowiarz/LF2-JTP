@@ -23,8 +23,9 @@ public class Screen {
         for(int i=0; i<1; i++) { //tworzenie graczy dodatkowych      
 
             StaticData.addPlayer(new Player()); // liczby to rozdzielczość ekranu
-        }
+        }       
         
+        //StaticData.getPlayer(2).dodajCel(new Point(400, 400)); 
     }
     private void odbijOdSciany(int i) {
             
@@ -89,10 +90,11 @@ public class Screen {
     public void odswiez() {
         Ui.rysujPlansze();
         for(int i=0; i<StaticData.getNumberOfPlayers(); i++) {
-            if(StaticData.odbijanie) {
-            if(StaticData.getPlayer(i).getSamowola()) // sprawdza czy dany gracz ma włączoną samowole
-                    odbijOdSciany(i); // jesli tak to odbija go od ściany
-            }
+            //if(StaticData.odbijanie) {
+            //if(StaticData.getPlayer(i).getSamowola()) // sprawdza czy dany gracz ma włączoną samowole
+            //        odbijOdSciany(i); // jesli tak to odbija go od ściany
+            //}
+                     
             poruszanie(i); // odpowiada za sterowanie danym graczem
             StaticData.getPlayer(i).rysuj(); // na koniec pokazuje gracza po wszystkich przesunięciach
             //System.out.println("X:" + StaticData.getPlayer(0).getXPosition()+ " Y:" + StaticData.getPlayer(0).getYPosition());
@@ -100,3 +102,4 @@ public class Screen {
     }
     
 }
+

@@ -10,6 +10,9 @@ import java.util.logging.Logger;
 
 
 public class Player {
+    Destination cele = new Destination();
+    private boolean celetemp = true;
+    
     private boolean samowola; // jesli true to steruje komputer;
     private int pozx;
     private int pozy;
@@ -37,6 +40,9 @@ public class Player {
     
     public Player() { 
         this(StaticData.losujSzerokosc(),StaticData.losujWysokosc(), new ControlPlayer());
+        while(czyKolizja()) {
+            this.setPosition(StaticData.losujSzerokosc(), StaticData.losujWysokosc());
+        }
         samowola = true;
     }
     
@@ -54,13 +60,17 @@ public class Player {
     
     public Player(ControlPlayer keys) {
         this(StaticData.losujSzerokosc(), StaticData.losujWysokosc(), keys);
+        while(czyKolizja()) {
+            this.setPosition(StaticData.losujSzerokosc(), StaticData.losujWysokosc());
+        }
         samowola = false;
     }
+      
     
-
-    
-    
-    public void rysuj() { 
+    public void rysuj() {
+       if(samowola) {
+           doCelu();
+       }
        boolean drawImage = StaticData.ekran.drawImage(obrazek[stan], pozx, pozy, null);
        
     }
@@ -131,6 +141,34 @@ public class Player {
         }
     }
     
+    // Dojście do wyznaczonego celu
+    public void doCelu() {
+        if(!cele.isEmpty()) {
+            if(celetemp) {
+                celetemp = !celetemp;
+            }
+            else {
+            int x = cele.getDestination().getX();
+            int y = cele.getDestination().getY();
+
+            if(pozx > x)
+                moveLeft();
+            if(pozx < x) 
+                moveRight();
+            if(pozy > y)
+                moveUp();
+            if(pozy < y)
+                moveDown();
+            }
+        }
+    }
+    
+    // Dodanie nowego celu
+    public void dodajCel(Point p) {
+        cele.addDestination(p);
+    }
+        
+    // Sprawdzanie kolizji
     private boolean czyKolizja() {
         int me = StaticData.IndexOf(this);
         for(int i = 0; i < StaticData.getNumberOfPlayers(); i++) {
@@ -161,6 +199,9 @@ public class Player {
     }
     public int getYPosition() {
         return pozy;
+    }
+    public Point getPosition() {
+        return new Point(pozx, pozy);
     }
     public boolean getSamowola() {
         return samowola;

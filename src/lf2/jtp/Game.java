@@ -24,8 +24,6 @@ public class Game implements Runnable {
    public Game(){
       StaticData.screenWidth = monitor.width;
       StaticData.screenHeight = monitor.height;
-
-      System.out.println("S:" + StaticData.y2);
       
       obiektScreen = new Screen();
       frame = new JFrame("LF2");
