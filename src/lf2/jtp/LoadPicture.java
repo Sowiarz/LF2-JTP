@@ -36,9 +36,11 @@ public class LoadPicture {
                }
             }
             
+            System.out.println("Wysokość: " + sprites[0].getHeight() + " Szerokość: " + sprites[0].getWidth());
+            
             StaticData.playerHeight = charHeight;
             StaticData.playerWidth = charWidth;
-
+            
             return sprites;
     }
 

@@ -17,13 +17,12 @@ public class StaticData {
     public static int playerWidth;
     public static int playerHeight;
     
-    // Zmienne pola rozgrywki gry
+    // Zmienne pola rozgrywki gry - oznaczają marginesy
     public static int x1 = 10;
     public static int y1 = 100;
-    public static int x2; // ustawiane w klasie Game
-    public static int y2; // ustawiane w klasie Game
-    
-    
+    public static int x2 = 10;
+    public static int y2 = 10;
+       
     
     // zmienne testowe
     public static boolean odbijanie = true;
@@ -54,9 +53,9 @@ public class StaticData {
     // Losowanie danych
     
     public static int losujSzerokosc() {
-        return Math.abs((new Random().nextInt((x2-x1)+1))+x1);
+        return Math.abs((new Random().nextInt(screenWidth-x1-x2-playerWidth))+x1);
     }
     public static int losujWysokosc() {
-        return Math.abs((new Random().nextInt((y2-y1)+1))+y1);        
+        return Math.abs((new Random().nextInt(screenHeight-y1-y2-playerHeight))+y1);        
     }
 }

@@ -66,8 +66,8 @@ public class Player {
     
     // Ruchy
     public void moveRight() {
-        if(pozx >= StaticData.x2-StaticData.playerWidth) 
-                pozx = StaticData.x2-StaticData.playerWidth;
+        if(pozx >= StaticData.screenWidth-StaticData.x2-StaticData.playerWidth) 
+                pozx = StaticData.screenWidth-StaticData.x2-StaticData.playerWidth;
         else 
                 pozx+=4;
         rysuj();
@@ -93,8 +93,8 @@ public class Player {
         }
     }
     public void moveDown() {
-        if(pozy >= StaticData.y2+StaticData.playerHeight-30)
-                pozy = StaticData.y2+StaticData.playerHeight-30;
+        if(pozy >= StaticData.screenHeight-StaticData.y2-StaticData.playerHeight)
+                pozy = StaticData.screenHeight-StaticData.y2-StaticData.playerHeight;
         else
                 pozy+=4;
         rysuj();

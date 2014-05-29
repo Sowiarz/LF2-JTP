@@ -9,10 +9,13 @@ public class Ui {
         StaticData.ekran.fillRect(0, 0, StaticData.screenWidth, StaticData.screenHeight);
         Font czcionkaMenu = new Font("Arial", Font.BOLD, 20);
         StaticData.ekran.setFont(czcionkaMenu);
-        StaticData.ekran.setColor(new Color(0, 0, 0));
-        StaticData.ekran.fillRect(StaticData.x1, StaticData.y1, StaticData.x2, StaticData.y2);
+        rysujPole();
         StaticData.ekran.setColor(new Color(255, 0, 0));
         StaticData.ekran.drawString("Little Fighter", 10, 20);
         
+    }
+    public static void rysujPole() {
+        StaticData.ekran.setColor(new Color(0, 0, 0));
+        StaticData.ekran.fillRect(StaticData.x1, StaticData.y1, StaticData.screenWidth-StaticData.x1-StaticData.x2, StaticData.screenHeight-StaticData.y1-StaticData.y2);  
     }
 }
