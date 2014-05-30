@@ -36,6 +36,9 @@ public class Destination {
         else
             return false;
     }
+    public int getNumber() {
+        return cele.size();
+    }
     
     
     

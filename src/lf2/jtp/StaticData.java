@@ -41,6 +41,9 @@ public class StaticData {
     public static Player getPlayer(int id) {
         return gracze.get(id);
     }
+    public static int getPlayerID(int Player) {
+        return gracze.indexOf(Player);
+    }
     public static int getNumberOfPlayers() {
         return gracze.size();
     }
@@ -57,5 +60,10 @@ public class StaticData {
     }
     public static int losujWysokosc() {
         return Math.abs((new Random().nextInt(screenHeight-y1-y2-playerHeight))+y1);        
+    }
+    public static int odlegloscOdPunktow(Point p1, Point p2) {
+        
+        return Math.abs((int) Math.sqrt((double)(((p2.getX()-p1.getX())*(p2.getX()-p1.getX()))+((p2.getY()-p1.getY())*(p2.getY()-p1.getY())))));
+         
     }
 }

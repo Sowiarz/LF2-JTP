@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class Player {
     Destination cele = new Destination();
-    private boolean celeDelay = true; // Stworzone aby gracz miał jakieś szanse z komputerem 
+    private int celeDelay = 0; // Stworzone aby gracz miał jakieś szanse z komputerem 
     
     private boolean samowola; // jesli true to steruje komputer;
     private int pozx;
@@ -69,6 +69,7 @@ public class Player {
     
     public void rysuj() {
        
+       System.out.println("ilość elem=" + cele.getNumber());
        boolean drawImage = StaticData.ekran.drawImage(obrazek[stan], pozx, pozy, null);
        
     }
@@ -142,24 +143,29 @@ public class Player {
     // Dojście do wyznaczonego celu
     public void doCelu() {
         if(!cele.isEmpty()) {
-            if(celeDelay) {
-                celeDelay = !celeDelay;
+            if(celeDelay < 3) {
+                celeDelay++;
             }
             else {
-            int x = cele.getDestination().getX();
-            int y = cele.getDestination().getY();
-            
-            if((pozx == x) && (pozy == y))
-                cele.deleteDestination();
 
-            if(pozx > x)
-                moveLeft();
-            if(pozx < x) 
-                moveRight();
-            if(pozy > y)
-                moveUp();
-            if(pozy < y)
-                moveDown();
+                int x = cele.getDestination().getX();
+                int y = cele.getDestination().getY();
+
+                if(StaticData.odlegloscOdPunktow(new Point(pozx, pozy), cele.getDestination()) < 10)
+                    cele.deleteDestination();
+
+                if(pozx > x)
+                    moveLeft();
+                if(pozx < x) 
+                    moveRight();
+                if(pozy > y)
+                    moveUp();
+                if(pozy < y)
+                    moveDown();
+
+                if(cele.getNumber() > 16)
+                    cele.deleteAllDestinations();
+                celeDelay = 0;
             }
         }
     }
