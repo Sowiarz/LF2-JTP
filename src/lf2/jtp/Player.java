@@ -11,7 +11,8 @@ import java.util.logging.Logger;
 
 public class Player {
     Destination cele = new Destination();
-    private int celeDelay = 0; // Stworzone aby gracz miał jakieś szanse z komputerem 
+    private int celeDelay = 0; // Stworzone aby gracz miał jakieś szanse z komputerem
+    private int takebrake = 0; // Aby co jakiś czas przestawał gonić gracza
     
     private boolean samowola; // jesli true to steruje komputer;
     private int pozx;
@@ -142,18 +143,26 @@ public class Player {
     
     // Dojście do wyznaczonego celu
     public void doCelu() {
+        try {
+        if(StaticData.odlegloscOdPunktow(new Point(pozx, pozy), cele.getDestination()) < StaticData.playerWidth+5)
+            cele.deleteAllDestinations();
+        }
+        catch (Exception x) {
+            // nic nie rób
+        }
+        
         if(!cele.isEmpty()) {
+
             if(celeDelay < 3) {
                 celeDelay++;
             }
             else {
-
+                               
                 int x = cele.getDestination().getX();
                 int y = cele.getDestination().getY();
 
-                if(StaticData.odlegloscOdPunktow(new Point(pozx, pozy), cele.getDestination()) < 10)
-                    cele.deleteDestination();
-
+                
+                
                 if(pozx > x)
                     moveLeft();
                 if(pozx < x) 
@@ -169,6 +178,7 @@ public class Player {
             }
         }
     }
+
     
     // Dodanie nowego celu
     public void dodajCel(Point p) {
