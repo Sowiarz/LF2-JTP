@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class Player {
     Destination cele = new Destination();
-    private boolean celetemp = true;
+    private boolean celeDelay = true; // Stworzone aby gracz miał jakieś szanse z komputerem 
     
     private boolean samowola; // jesli true to steruje komputer;
     private int pozx;
@@ -68,9 +68,7 @@ public class Player {
       
     
     public void rysuj() {
-       if(samowola) {
-           doCelu();
-       }
+       
        boolean drawImage = StaticData.ekran.drawImage(obrazek[stan], pozx, pozy, null);
        
     }
@@ -144,12 +142,15 @@ public class Player {
     // Dojście do wyznaczonego celu
     public void doCelu() {
         if(!cele.isEmpty()) {
-            if(celetemp) {
-                celetemp = !celetemp;
+            if(celeDelay) {
+                celeDelay = !celeDelay;
             }
             else {
             int x = cele.getDestination().getX();
             int y = cele.getDestination().getY();
+            
+            if((pozx == x) && (pozy == y))
+                cele.deleteDestination();
 
             if(pozx > x)
                 moveLeft();

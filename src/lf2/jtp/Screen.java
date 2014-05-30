@@ -21,11 +21,13 @@ public class Screen {
         StaticData.addPlayer(drugi); // tworzenie gracza głownego
         
         for(int i=0; i<1; i++) { //tworzenie graczy dodatkowych      
-
-            StaticData.addPlayer(new Player()); // liczby to rozdzielczość ekranu
-        }       
+            
+            StaticData.addPlayer(new Player()); 
+        }
+        StaticData.getPlayer(2).dodajCel(StaticData.getPlayer(0).getPosition());
+        StaticData.getPlayer(2).dodajCel(StaticData.getPlayer(1).getPosition());
         
-        //StaticData.getPlayer(2).dodajCel(new Point(400, 400)); 
+         
     }
     private void odbijOdSciany(int i) {
             
@@ -94,7 +96,8 @@ public class Screen {
             //if(StaticData.getPlayer(i).getSamowola()) // sprawdza czy dany gracz ma włączoną samowole
             //        odbijOdSciany(i); // jesli tak to odbija go od ściany
             //}
-                     
+            
+            StaticData.getPlayer(i).doCelu();
             poruszanie(i); // odpowiada za sterowanie danym graczem
             StaticData.getPlayer(i).rysuj(); // na koniec pokazuje gracza po wszystkich przesunięciach
             //System.out.println("X:" + StaticData.getPlayer(0).getXPosition()+ " Y:" + StaticData.getPlayer(0).getYPosition());

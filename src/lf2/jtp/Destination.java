@@ -30,7 +30,11 @@ public class Destination {
         cele.removeAll(cele);
     }
     public boolean isEmpty() {
-        return cele.isEmpty();
+        if(cele.size() == 0) {
+            return true;
+        }
+        else
+            return false;
     }
     
     
