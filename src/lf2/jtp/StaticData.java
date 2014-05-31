@@ -63,7 +63,7 @@ public class StaticData {
     }
     public static int odlegloscOdPunktow(Point p1, Point p2) {
         
-        return Math.abs((int) Math.sqrt((double)(((p2.getX()-p1.getX())*(p2.getX()-p1.getX()))+((p2.getY()-p1.getY())*(p2.getY()-p1.getY())))));
+        return (int) Math.sqrt((double)(((p2.getX()-p1.getX())*(p2.getX()-p1.getX()))+((p2.getY()-p1.getY())*(p2.getY()-p1.getY()))));
          
     }
 }

@@ -156,11 +156,17 @@ public class Player {
     
     public void uderz() {
         int me = StaticData.IndexOf(this);
+        int mystate=StaticData.getPlayer(me).stan;
         for(int i = 0; i < StaticData.getNumberOfPlayers(); i++) {
             if(i != me) {
                 Point przeciwnik = StaticData.getPlayer(i).getPosition();
                 Point ja = new Point(pozx, pozy);
-                if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20) {
+                if(mystate >= 0 && mystate  <= 2)
+                if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx > 0) {
+                    StaticData.getPlayer(i).decreaseHP();
+                }
+                if(mystate >= 3 && mystate  <= 6)
+                if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx < 0) {
                     StaticData.getPlayer(i).decreaseHP();
                 }
             }
@@ -234,7 +240,7 @@ public class Player {
     // Życie
     
     public void decreaseHP() {
-        if (time + 100 < System.currentTimeMillis()) {
+        if (time + 500 < System.currentTimeMillis()) {
             time = System.currentTimeMillis();
             HP = HP - 1;
         }       
