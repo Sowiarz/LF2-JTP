@@ -80,9 +80,10 @@ public class Player {
     
     public void pokazHP() {
         String temp = String.valueOf(HP);
-        Font czcionkaMenu = new Font("Arial", Font.BOLD, 15);
+        temp = "HP:" + temp;
+        Font czcionkaMenu = new Font("Arial", Font.BOLD, 12);
         StaticData.ekran.setFont(czcionkaMenu);
-        StaticData.ekran.drawString(temp, pozx+20, (pozy-10));
+        StaticData.ekran.drawString(temp, pozx+15, (pozy-10));
     }
     
     // Ruchy
@@ -159,7 +160,7 @@ public class Player {
             if(i != me) {
                 Point przeciwnik = StaticData.getPlayer(i).getPosition();
                 Point ja = new Point(pozx, pozy);
-                if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < 80) {
+                if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20) {
                     StaticData.getPlayer(i).decreaseHP();
                 }
             }
