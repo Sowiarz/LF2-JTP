@@ -11,21 +11,21 @@ public class LoadPicture {
     private static int width=40;
     private static int height=60;
     private static int rows=1;
-    private static int columns=12;
+    private static int columns=11;
     
 
     public static BufferedImage[] wczytaj() throws IOException {
 
-            final int charWidth = 64;
-            final int charHeight = 64;
-            final int charCols = 12;
+            final int charWidth = 60;
+            final int charHeight = 85;
+            final int charCols = 22;
             final int charRows = 1;
 
-            BufferedImage[] sprites = new BufferedImage[15];
+            BufferedImage[] sprites = new BufferedImage[40];
             BufferedImage imgs = null;
 
             try{
-                imgs = ImageIO.read(new File("tester.png"));
+                imgs = ImageIO.read(new File("testerbackup.png"));
             }catch (IOException e) {
                 e.printStackTrace();
             }

@@ -17,6 +17,7 @@ public class Player {
     private int pozx;
     private int pozy;
     private int stan = 0;
+    private int strona = 0;
     public long time;
     private long lastTimeHit;
     
@@ -94,12 +95,12 @@ public class Player {
         else 
                 pozx+=4;
         if(czyKolizja())
-            pozx-=4;
-
-        rysuj();
+            pozx-=4; 
+            strona = 1;
+            rysuj();
         if (time + 100 < System.currentTimeMillis()) {
             time = System.currentTimeMillis();
-            if(stan > 1)
+            if(stan > 9)
             stan=0;
             stan++;
         }
@@ -112,12 +113,13 @@ public class Player {
                 pozx-=4;
         if(czyKolizja())
             pozx+=4;
+            strona = -1;
 
         rysuj();
         if (time + 100 < System.currentTimeMillis()) {
             time = System.currentTimeMillis();
-            if(stan > 4 || stan < 3)
-            stan=3;
+            if(stan > 20 || stan < 10)
+            stan=10;
             stan++;
         }
     }
@@ -131,10 +133,17 @@ public class Player {
 
         rysuj();
         if (time + 100 < System.currentTimeMillis()) {
-            time = System.currentTimeMillis();
-            if(stan > 7 || stan < 6)
-            stan=6;
-            stan++;
+            time = System.currentTimeMillis();      
+            if(strona==-1){
+                if(stan > 20 || stan < 10)
+                    stan=10;
+            }
+            
+            if(strona==1){
+                if(stan>9)
+                    stan=0;
+            }
+        stan++;
         }
     }
     public void moveUp() {
@@ -144,12 +153,23 @@ public class Player {
                 pozy-=4;
         if(czyKolizja())
             pozy+=4;
-        rysuj();
+            rysuj();
         if (time + 100 < System.currentTimeMillis()) {
             time = System.currentTimeMillis();
-            if(stan > 10 || stan < 9)
-            stan=9;
-            stan++;
+            
+            if(strona==-1){
+                if(stan > 20 || stan < 10)
+                    stan=10;
+            }
+            
+            if(strona==1){
+                if(stan>9)
+                    stan=0;
+            }
+
+                
+            
+           stan++;          
         }
     }
     
