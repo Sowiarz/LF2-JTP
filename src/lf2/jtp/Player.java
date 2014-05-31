@@ -170,8 +170,12 @@ public class Player {
     // Dojście do wyznaczonego celu
     public void doCelu() {
         try {
-        if(StaticData.odlegloscOdPunktow(new Point(pozx, pozy), cele.getDestination()) < StaticData.playerHeight+4)
-            cele.deleteAllDestinations();
+        int me = StaticData.IndexOf(this);
+        System.out.printf("POINT : %d",cele.getDestination().getX());
+        //if(StaticData.odlegloscOdPunktow(new Point(pozx, pozy), cele.getDestination()) < 0)
+        if(StaticData.odlegloscOdPunktow(new Point(pozx, pozy), cele.getDestination()) < StaticData.playerHeight + 4)
+            if(Math.abs(StaticData.getPlayer(me).pozx - cele.getDestination().getX()) < StaticData.playerWidth + 4)
+                cele.deleteAllDestinations();
         }
         catch (Exception x) {
             // nic nie rób
