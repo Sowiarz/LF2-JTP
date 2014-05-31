@@ -71,7 +71,6 @@ public class Player {
     
     public void rysuj() {
        pokazHP();
-       Color transparentWhite = new Color(75,0,76,1);
        boolean drawImage = StaticData.ekran.drawImage(picture.getImage(), pozx, pozy, null);
        
     }
@@ -147,19 +146,23 @@ public class Player {
             if(i != me) {
                 Point przeciwnik = StaticData.getPlayer(i).getPosition();
                 Point ja = new Point(pozx, pozy);
-                if(picture.getState()  <= 10)
+                if(picture.getState()  <= 10 || (picture.getState() >= 22 && picture.getState() <= 23))
                 if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx > 0) {
                     if (lastTimeHit + 500 < System.currentTimeMillis()) {
                         lastTimeHit = System.currentTimeMillis();
+                            picture.uderz();
                             StaticData.getPlayer(i).decreaseHP();
+                            rysuj();
                     } 
                     
                 }
-                if(picture.getState() >10)
+                if(picture.getState() > 10 || (picture.getState() >= 24 && picture.getState() <= 25))
                 if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx < 0) {
                     if (lastTimeHit + 500 < System.currentTimeMillis()) {
                         lastTimeHit = System.currentTimeMillis();
+                            picture.uderz();
                             StaticData.getPlayer(i).decreaseHP();
+                            rysuj();
                     } 
                 }
             }

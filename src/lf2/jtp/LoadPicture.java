@@ -9,6 +9,7 @@ public class LoadPicture {
     
     private int charWidth = 60;
     private int charHeight = 85;
+    private int charFightWidth = 92;
     private int charCols = 22;
     private int charRows = 1;
     
@@ -39,13 +40,18 @@ public class LoadPicture {
             }catch (IOException e) {
                 System.out.println("Wystąpił błąd z wczytaniem obrazka!");
             }
-
-            for (int i = 0; i < charCols; i++) {
-               for (int j = 0; j < charRows; j++) {
-                  sprites[i * charRows + j] = imgs.getSubimage(i * charWidth, j * charHeight, charWidth, charHeight);
-               }
-            }
             
+            for (int i = 0; i < charCols; i++) {
+                
+                  sprites[i] = imgs.getSubimage(i * charWidth, 0, charWidth, charHeight);
+               
+            }
+            int j = 0;
+            for ( int i = 22; i < 26 ; i++,j++){
+                
+                sprites[i] = imgs.getSubimage(1320 + j * charFightWidth, 0, charFightWidth, charHeight);
+                
+            }
             
             StaticData.playerHeight = charHeight; // Zmienne globalne z wymiarami gracza
             StaticData.playerWidth = charWidth;
@@ -112,6 +118,23 @@ public class LoadPicture {
         }
     }
     
+    public void uderz(){
+        if (time + 100 < System.currentTimeMillis()) {
+            time = System.currentTimeMillis();
+            
+            if(strona==-1){
+                if(stan > 24 || stan < 23)
+                    stan=23;
+            }
+            
+            if(strona==1){
+                if(stan > 22 || stan<21)
+                    stan=21;
+            }             
+            
+           stan++;          
+        }    
+    }
     public int getState() {
         return stan;
     }
