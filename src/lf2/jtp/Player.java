@@ -171,8 +171,6 @@ public class Player {
     public void doCelu() {
         try {
         int me = StaticData.IndexOf(this);
-        System.out.printf("POINT : %d",cele.getDestination().getX());
-        //if(StaticData.odlegloscOdPunktow(new Point(pozx, pozy), cele.getDestination()) < 0)
         if(StaticData.odlegloscOdPunktow(new Point(pozx, pozy), cele.getDestination()) < StaticData.playerHeight + 4)
             if(Math.abs(StaticData.getPlayer(me).pozx - cele.getDestination().getX()) < StaticData.playerWidth + 4)
                 cele.deleteAllDestinations();
