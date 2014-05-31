@@ -183,7 +183,7 @@ public class Player {
             if(i != me) {
                 Point przeciwnik = StaticData.getPlayer(i).getPosition();
                 Point ja = new Point(pozx, pozy);
-                if(mystate >= 0 && mystate  <= 2)
+                if(mystate  <= 10)
                 if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx > 0) {
                     if (lastTimeHit + 500 < System.currentTimeMillis()) {
                         lastTimeHit = System.currentTimeMillis();
@@ -191,7 +191,7 @@ public class Player {
                     } 
                     
                 }
-                if(mystate >= 3 && mystate  <= 6)
+                if(mystate >10)
                 if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx < 0) {
                     if (lastTimeHit + 500 < System.currentTimeMillis()) {
                         lastTimeHit = System.currentTimeMillis();
