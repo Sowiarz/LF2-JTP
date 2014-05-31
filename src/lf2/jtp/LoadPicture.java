@@ -14,7 +14,7 @@ public class LoadPicture {
     private int charRows = 1;
     
     private int stan = 0;
-    private int strona = 0;
+    public int strona = 0;
     public long time;
         
     public static BufferedImage[] obrazek; //tablica przechowywująca obrazki
