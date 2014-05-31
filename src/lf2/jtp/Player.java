@@ -76,6 +76,7 @@ public class Player {
     
     public void rysuj() {
        pokazHP();
+       Color transparentWhite = new Color(75,0,76,1);
        boolean drawImage = StaticData.ekran.drawImage(obrazek[stan], pozx, pozy, null);
        
     }
