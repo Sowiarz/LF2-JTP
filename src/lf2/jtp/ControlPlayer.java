@@ -10,16 +10,18 @@ public class ControlPlayer {
     private int Right;
     private int Down;
     private int Up;
+    private int Hit;
     
     
-    public ControlPlayer(int r, int l, int u, int d) {
+    public ControlPlayer(int r, int l, int u, int d, int h) {
         Left = l;
         Down = d;
         Right = r;
         Up = u;
+        Hit = h;
     }
     public ControlPlayer() {
-        this(0, 0, 0, 0);
+        this(0, 0, 0, 0, 0);
     }
     public void setUp(int i) {
         Up = i;
@@ -33,6 +35,9 @@ public class ControlPlayer {
     public void setLeft(int i) {
         Left = i;
     }
+    public void setHit(int i) {
+        Hit = i;
+    }
     public int getUp() {
         return Up;
     }
@@ -45,6 +50,8 @@ public class ControlPlayer {
     public int getRight() {
         return Right;
     }
-
+    public int getHit() {
+        return Hit;
+    }
     
 }

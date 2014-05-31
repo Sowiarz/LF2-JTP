@@ -12,13 +12,16 @@ import java.util.logging.Logger;
 public class Player {
     Destination cele = new Destination();
     private int celeDelay = 0; // Stworzone aby gracz miał jakieś szanse z komputerem
-    private int takebrake = 0; // Aby co jakiś czas przestawał gonić gracza
     
     private boolean samowola; // jesli true to steruje komputer;
     private int pozx;
     private int pozy;
     private int stan = 0;
     public long time;
+    
+    // Dane gracza
+    private int HP;
+    private String imie;
    
     public ControlPlayer sterowanie;
     
@@ -57,6 +60,7 @@ public class Player {
         sterowanie = keys;
         pozx = x;
         pozy = y;
+        HP = 100;
     }
     
     public Player(ControlPlayer keys) {
@@ -69,10 +73,16 @@ public class Player {
       
     
     public void rysuj() {
-       
-       System.out.println("ilość elem=" + cele.getNumber());
+       pokazHP();
        boolean drawImage = StaticData.ekran.drawImage(obrazek[stan], pozx, pozy, null);
        
+    }
+    
+    public void pokazHP() {
+        String temp = String.valueOf(HP);
+        Font czcionkaMenu = new Font("Arial", Font.BOLD, 15);
+        StaticData.ekran.setFont(czcionkaMenu);
+        StaticData.ekran.drawString(temp, pozx+20, (pozy-10));
     }
     
     // Ruchy
@@ -141,6 +151,29 @@ public class Player {
         }
     }
     
+    // Walka
+    
+    public void uderz() {
+        int me = StaticData.IndexOf(this);
+        for(int i = 0; i < StaticData.getNumberOfPlayers(); i++) {
+            if(i != me) {
+                Point przeciwnik = StaticData.getPlayer(i).getPosition();
+                Point ja = new Point(pozx, pozy);
+                if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < 80) {
+                    StaticData.getPlayer(i).decreaseHP();
+                }
+            }
+        }
+    }
+    
+    private void uderzLewo() {
+           
+    }
+    
+    private void uderzPrawo() {
+        
+    }
+    
     // Dojście do wyznaczonego celu
     public void doCelu() {
         try {
@@ -160,8 +193,6 @@ public class Player {
                                
                 int x = cele.getDestination().getX();
                 int y = cele.getDestination().getY();
-
-                
                 
                 if(pozx > x)
                     moveLeft();
@@ -199,14 +230,30 @@ public class Player {
         return false;
     }
     
+    // Życie
+    
+    public void decreaseHP() {
+        if (time + 100 < System.currentTimeMillis()) {
+            time = System.currentTimeMillis();
+            HP = HP - 1;
+        }       
+    }
+    
     // Ustawienia
     public void setPosition(int x, int y) {
         pozy = x;
         pozy = y;
     }
     
+    public void setName(String i) {
+        imie = i;
+    }
+    
     public void setSamowola(boolean s) {
         samowola = s;
+    }
+    public void setHP(int i) {
+        HP = i;
     }
     
     // Sprawdzanie informacji
@@ -237,5 +284,18 @@ public class Player {
     }
     public int getControlRight() {
         return sterowanie.getRight();
+    }
+    public int getControlHit() {
+        return sterowanie.getHit();
+    }
+    
+    // Metody zwracające dane playera 
+    
+    public String getName() {
+        return imie;
+    }
+    
+    public int getHP() {
+        return HP;
     }
 }
