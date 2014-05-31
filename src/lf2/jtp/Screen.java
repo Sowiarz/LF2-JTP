@@ -104,6 +104,11 @@ public class Screen {
                 StaticData.getPlayer(i).uderz();
             }
             
+            if(StaticData.getPlayer(i).getHP() <= 0) {
+                StaticData.removePlayer(i); // usunięcie gracza jeśli zginął
+                StaticData.addPlayer(new Player()); // Stworzenie nowego przeciwnika w miejsce gracza który zginął
+            }
+                
             StaticData.getPlayer(i).doCelu();
             poruszanie(i); // odpowiada za sterowanie danym graczem
             StaticData.getPlayer(i).rysuj(); // na koniec pokazuje gracza po wszystkich przesunięciach
