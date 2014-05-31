@@ -11,13 +11,17 @@ import java.util.logging.Logger;
 
 public class Player {
     Destination cele = new Destination();
+    public ControlPlayer sterowanie;
+    
+    LoadPicture picture = new LoadPicture();
+    
+    
     private int celeDelay = 0; // Stworzone aby gracz miał jakieś szanse z komputerem
     
     private boolean samowola; // jesli true to steruje komputer;
     private int pozx;
     private int pozy;
-    private int stan = 0;
-    private int strona = 0;
+
     public long time;
     private long lastTimeHit;
     
@@ -25,22 +29,13 @@ public class Player {
     private int HP;
     private String imie;
    
-    public ControlPlayer sterowanie;
+   
     
     public boolean prawa = false;
     public boolean lewa = true;
     public boolean dol = false;
     public boolean gora = true;
     
-    
-    public static BufferedImage[] obrazek;
-    static {
-        try {
-            obrazek=LoadPicture.wczytaj();
-        } catch (IOException ex) {
-            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     
 
     
@@ -77,7 +72,7 @@ public class Player {
     public void rysuj() {
        pokazHP();
        Color transparentWhite = new Color(75,0,76,1);
-       boolean drawImage = StaticData.ekran.drawImage(obrazek[stan], pozx, pozy, null);
+       boolean drawImage = StaticData.ekran.drawImage(picture.getImage(), pozx, pozy, null);
        
     }
     
@@ -96,15 +91,12 @@ public class Player {
         else 
                 pozx+=4;
         if(czyKolizja())
-            pozx-=4; 
-            strona = 1;
-            rysuj();
-        if (time + 100 < System.currentTimeMillis()) {
-            time = System.currentTimeMillis();
-            if(stan > 9)
-            stan=0;
-            stan++;
-        }
+            pozx-=4;
+        
+        picture.moveRight();
+        
+        rysuj();
+
     }
    
     public void moveLeft() {
@@ -114,15 +106,10 @@ public class Player {
                 pozx-=4;
         if(czyKolizja())
             pozx+=4;
-            strona = -1;
-
+        
+        picture.moveLeft();
+        
         rysuj();
-        if (time + 100 < System.currentTimeMillis()) {
-            time = System.currentTimeMillis();
-            if(stan > 20 || stan < 10)
-            stan=10;
-            stan++;
-        }
     }
     public void moveDown() {
         if(pozy >= StaticData.screenHeight-StaticData.y2-StaticData.playerHeight)
@@ -131,21 +118,11 @@ public class Player {
                 pozy+=4;
         if(czyKolizja())
             pozy-=4;
+        
+        picture.moveDown();
 
         rysuj();
-        if (time + 100 < System.currentTimeMillis()) {
-            time = System.currentTimeMillis();      
-            if(strona==-1){
-                if(stan > 20 || stan < 10)
-                    stan=10;
-            }
-            
-            if(strona==1){
-                if(stan>9)
-                    stan=0;
-            }
-        stan++;
-        }
+        
     }
     public void moveUp() {
         if(pozy <= StaticData.y1)
@@ -154,36 +131,23 @@ public class Player {
                 pozy-=4;
         if(czyKolizja())
             pozy+=4;
-            rysuj();
-        if (time + 100 < System.currentTimeMillis()) {
-            time = System.currentTimeMillis();
-            
-            if(strona==-1){
-                if(stan > 20 || stan < 10)
-                    stan=10;
-            }
-            
-            if(strona==1){
-                if(stan>9)
-                    stan=0;
-            }
-
-                
-            
-           stan++;          
-        }
+        
+        picture.moveUp();
+        
+        rysuj();
+        
     }
     
     // Walka
     
     public void uderz() {
         int me = StaticData.IndexOf(this);
-        int mystate=StaticData.getPlayer(me).stan;
+ 
         for(int i = 0; i < StaticData.getNumberOfPlayers(); i++) {
             if(i != me) {
                 Point przeciwnik = StaticData.getPlayer(i).getPosition();
                 Point ja = new Point(pozx, pozy);
-                if(mystate  <= 10)
+                if(picture.getState()  <= 10)
                 if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx > 0) {
                     if (lastTimeHit + 500 < System.currentTimeMillis()) {
                         lastTimeHit = System.currentTimeMillis();
@@ -191,7 +155,7 @@ public class Player {
                     } 
                     
                 }
-                if(mystate >10)
+                if(picture.getState() >10)
                 if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx < 0) {
                     if (lastTimeHit + 500 < System.currentTimeMillis()) {
                         lastTimeHit = System.currentTimeMillis();

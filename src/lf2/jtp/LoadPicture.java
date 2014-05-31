@@ -4,22 +4,32 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.Spring;
 
 public class LoadPicture {
     
-    private static int width=40;
-    private static int height=60;
-    private static int rows=1;
-    private static int columns=11;
+    private int charWidth = 60;
+    private int charHeight = 85;
+    private int charCols = 22;
+    private int charRows = 1;
+    
+    private int stan = 0;
+    private int strona = 0;
+    public long time;
+        
+    public static BufferedImage[] obrazek; //tablica przechowywująca obrazki
+
+    public LoadPicture() {
+        
+        try {
+            obrazek = wczytaj();
+        } catch (IOException ex) {
+            System.out.println("Wystąpił błąd z wczytaniem obrazka");
+        }
+        
+    }
     
 
-    public static BufferedImage[] wczytaj() throws IOException {
-
-            final int charWidth = 60;
-            final int charHeight = 85;
-            final int charCols = 22;
-            final int charRows = 1;
+    private BufferedImage[] wczytaj() throws IOException {
 
             BufferedImage[] sprites = new BufferedImage[40];
             BufferedImage imgs = null;
@@ -27,7 +37,7 @@ public class LoadPicture {
             try{
                 imgs = ImageIO.read(new File("testerbackup.png"));
             }catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Wystąpił błąd z wczytaniem obrazka!");
             }
 
             for (int i = 0; i < charCols; i++) {
@@ -41,6 +51,69 @@ public class LoadPicture {
             StaticData.playerWidth = charWidth;
             
             return sprites;
+    }
+    
+    public BufferedImage getImage() {
+        return obrazek[stan];
+    }
+    
+    public void moveRight() {
+            strona = 1;
+        if (time + 100 < System.currentTimeMillis()) {
+            time = System.currentTimeMillis();
+            if(stan > 9)
+            stan=0;
+            stan++;
+        }
+    }
+    
+    public void moveLeft() {
+        strona = -1;
+        
+        if (time + 100 < System.currentTimeMillis()) {
+            time = System.currentTimeMillis();
+            if(stan > 20 || stan < 10)
+            stan=10;
+            stan++;
+        }
+    }
+    
+    public void moveDown() {
+        if (time + 100 < System.currentTimeMillis()) {
+            time = System.currentTimeMillis();      
+            if(strona==-1){
+                if(stan > 20 || stan < 10)
+                    stan=10;
+            }
+            
+            if(strona==1){
+                if(stan>9)
+                    stan=0;
+            }
+        stan++;
+        }
+    }
+    
+    public void moveUp() {
+        if (time + 100 < System.currentTimeMillis()) {
+            time = System.currentTimeMillis();
+            
+            if(strona==-1){
+                if(stan > 20 || stan < 10)
+                    stan=10;
+            }
+            
+            if(strona==1){
+                if(stan>9)
+                    stan=0;
+            }             
+            
+           stan++;          
+        }
+    }
+    
+    public int getState() {
+        return stan;
     }
 
 }
