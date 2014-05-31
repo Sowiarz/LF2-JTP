@@ -18,6 +18,7 @@ public class Player {
     private int pozy;
     private int stan = 0;
     public long time;
+    private long lastTimeHit;
     
     // Dane gracza
     private int HP;
@@ -172,14 +173,7 @@ public class Player {
             }
         }
     }
-    
-    private void uderzLewo() {
-           
-    }
-    
-    private void uderzPrawo() {
-        
-    }
+
     
     // Dojście do wyznaczonego celu
     public void doCelu() {

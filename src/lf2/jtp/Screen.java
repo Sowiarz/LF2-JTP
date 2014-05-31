@@ -99,7 +99,11 @@ public class Screen {
             //if(StaticData.getPlayer(i).getSamowola()) // sprawdza czy dany gracz ma włączoną samowole
             //        odbijOdSciany(i); // jesli tak to odbija go od ściany
             //}
-            StaticData.getPlayer(2).dodajCel(StaticData.getPlayer(0).getPosition());
+            if(StaticData.getPlayer(i).getSamowola()) {
+                StaticData.getPlayer(i).dodajCel(StaticData.getPlayer(0).getPosition());
+                StaticData.getPlayer(i).uderz();
+            }
+            
             StaticData.getPlayer(i).doCelu();
             poruszanie(i); // odpowiada za sterowanie danym graczem
             StaticData.getPlayer(i).rysuj(); // na koniec pokazuje gracza po wszystkich przesunięciach

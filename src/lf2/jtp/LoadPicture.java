@@ -37,7 +37,7 @@ public class LoadPicture {
             }
             
             
-            StaticData.playerHeight = charHeight;
+            StaticData.playerHeight = charHeight; // Zmienne globalne z wymiarami gracza
             StaticData.playerWidth = charWidth;
             
             return sprites;
