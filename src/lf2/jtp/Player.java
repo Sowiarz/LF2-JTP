@@ -170,7 +170,7 @@ public class Player {
     // Dojście do wyznaczonego celu
     public void doCelu() {
         try {
-        if(StaticData.odlegloscOdPunktow(new Point(pozx, pozy), cele.getDestination()) < StaticData.playerWidth+5)
+        if(StaticData.odlegloscOdPunktow(new Point(pozx, pozy), cele.getDestination()) < StaticData.playerHeight+4)
             cele.deleteAllDestinations();
         }
         catch (Exception x) {
