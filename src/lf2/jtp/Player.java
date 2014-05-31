@@ -164,11 +164,18 @@ public class Player {
                 Point ja = new Point(pozx, pozy);
                 if(mystate >= 0 && mystate  <= 2)
                 if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx > 0) {
-                    StaticData.getPlayer(i).decreaseHP();
+                    if (lastTimeHit + 500 < System.currentTimeMillis()) {
+                        lastTimeHit = System.currentTimeMillis();
+                            StaticData.getPlayer(i).decreaseHP();
+                    } 
+                    
                 }
                 if(mystate >= 3 && mystate  <= 6)
                 if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx < 0) {
-                    StaticData.getPlayer(i).decreaseHP();
+                    if (lastTimeHit + 500 < System.currentTimeMillis()) {
+                        lastTimeHit = System.currentTimeMillis();
+                            StaticData.getPlayer(i).decreaseHP();
+                    } 
                 }
             }
         }
@@ -234,10 +241,7 @@ public class Player {
     // Życie
     
     public void decreaseHP() {
-        if (time + 500 < System.currentTimeMillis()) {
-            time = System.currentTimeMillis();
-            HP = HP - 1;
-        }       
+        HP = HP - 1;      
     }
     
     // Ustawienia
