@@ -14,7 +14,7 @@ public class LoadPicture {
     private int charRows = 1;
     
     private int stan = 0;
-    private int strona = 0;
+    private int strona = 1;
     private long time;
         
     public static BufferedImage[] obrazek; //tablica przechowywująca obrazki
@@ -138,6 +138,7 @@ public class LoadPicture {
         }
         
     }
+    
     public void setState() { // metoda cofa rękę podczas walki
         if(getStrona() == 1) { // skierowany w prawo
             if (time + 100 < System.currentTimeMillis()) {
@@ -149,7 +150,7 @@ public class LoadPicture {
         if(getStrona() == -1) { // skierowany w lewo
             if (time + 100 < System.currentTimeMillis()) {
                 time = System.currentTimeMillis();
-                stan=10;
+                stan=11;
             
             }
         
