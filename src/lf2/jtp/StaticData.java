@@ -22,10 +22,6 @@ public class StaticData {
     public static int y1 = 100;
     public static int x2 = 10;
     public static int y2 = 10;
-       
-    
-    // zmienne testowe
-    public static boolean odbijanie = true;
     
     // listy z używanymi obiektami
     private static ArrayList<Player> gracze = new ArrayList<Player>();

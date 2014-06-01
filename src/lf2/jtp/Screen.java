@@ -23,50 +23,10 @@ public class Screen {
         for(int i=0; i<1; i++) { //tworzenie graczy dodatkowych      
             
             StaticData.addPlayer(new Player()); 
-        }
-        
-        
-        
-         
-    }
-    private void odbijOdSciany(int i) {
-            
-            if(StaticData.getPlayer(i).getXPosition() >= StaticData.screenWidth-70) {
-                StaticData.getPlayer(i).prawa = true;
-                StaticData.getPlayer(i).lewa = false;
-            }
-            if(StaticData.getPlayer(i).getXPosition() <= 0-20) {
-                StaticData.getPlayer(i).prawa = false;
-                StaticData.getPlayer(i).lewa = true;
-            }
-            if(StaticData.getPlayer(i).getYPosition() >= StaticData.screenHeight-70) {
-                StaticData.getPlayer(i).dol = true;
-                StaticData.getPlayer(i).gora = false;
-            }
-            if(StaticData.getPlayer(i).getYPosition() <= 0-20) {
-                StaticData.getPlayer(i).dol = false;
-                StaticData.getPlayer(i).gora = true;
-            }
-            
-            if(StaticData.getPlayer(i).lewa && StaticData.getPlayer(i).gora) {
-                StaticData.getPlayer(i).moveRight();
-                StaticData.getPlayer(i).moveDown();  
-            }
-            if(StaticData.getPlayer(i).lewa && StaticData.getPlayer(i).dol) {
-                StaticData.getPlayer(i).moveRight();
-                StaticData.getPlayer(i).moveUp();
-            }            
-            if(StaticData.getPlayer(i).prawa && StaticData.getPlayer(i).gora) {
-                StaticData.getPlayer(i).moveLeft();
-                StaticData.getPlayer(i).moveDown();  
-            }
-            if(StaticData.getPlayer(i).prawa && StaticData.getPlayer(i).dol) {
-                StaticData.getPlayer(i).moveLeft();
-                StaticData.getPlayer(i).moveUp();
-            }
+        }        
     }
     
-    private void poruszanie(int i) {
+    private void sterowanie(int i) {
         try {
             for(Integer key : Control.getControl().keySet()) { // pętla for-each - iteracja po każdym elemencie naciśniętego klawisza
 
@@ -82,8 +42,15 @@ public class Screen {
                 if(StaticData.getPlayer(i).getControlUp() == key) 
                    StaticData.getPlayer(i).moveUp();
                 
-                if(StaticData.getPlayer(i).getControlHit()== key) // Do uderzeń
-                   StaticData.getPlayer(i).uderz();
+                if(StaticData.getPlayer(i).getControlHit()== key)  {// Do uderzeń
+                   StaticData.getPlayer(i).showHit();
+                   StaticData.getPlayer(i).uderz();                   
+                }
+                
+                // Metoda ma ukryć uderzenie po jego wykonaniu
+                if(StaticData.getPlayer(i).getPictureState() >= 21 && StaticData.getPlayer(i).getPictureState() <= 24) {
+                    StaticData.getPlayer(i).hideHit();
+                }
             }
         }
         catch (Exception e) {
@@ -95,10 +62,7 @@ public class Screen {
     public void odswiez() {
         Ui.rysujPlansze();
         for(int i=0; i<StaticData.getNumberOfPlayers(); i++) {
-            //if(StaticData.odbijanie) {
-            //if(StaticData.getPlayer(i).getSamowola()) // sprawdza czy dany gracz ma włączoną samowole
-            //        odbijOdSciany(i); // jesli tak to odbija go od ściany
-            //}
+            
             if(StaticData.getPlayer(i).getSamowola()) {
                 StaticData.getPlayer(i).dodajCel(StaticData.getPlayer(0).getPosition());
                 StaticData.getPlayer(i).uderz();
@@ -110,7 +74,7 @@ public class Screen {
             }
                 
             StaticData.getPlayer(i).doCelu();
-            poruszanie(i); // odpowiada za sterowanie danym graczem
+            sterowanie(i); // odpowiada za sterowanie danym graczem
             StaticData.getPlayer(i).rysuj(); // na koniec pokazuje gracza po wszystkich przesunięciach
             //System.out.println("X:" + StaticData.getPlayer(0).getXPosition()+ " Y:" + StaticData.getPlayer(0).getYPosition());
         }

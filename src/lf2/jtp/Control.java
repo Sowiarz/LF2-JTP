@@ -21,8 +21,6 @@ public class Control implements KeyListener {
         int keyCode = e.getKeyCode();
         nacisnieteKlawisze.put(keyCode, true);
         
-        if(ifSpace())
-            StaticData.odbijanie = !StaticData.odbijanie; // włączanie i wyłączanie odbijania od ścian
         if(ifESC())
             System.exit(1); // Zamknięcie na przycisk ESC
 

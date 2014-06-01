@@ -14,8 +14,8 @@ public class LoadPicture {
     private int charRows = 1;
     
     private int stan = 0;
-    public int strona = 0;
-    public long time;
+    private int strona = 0;
+    private long time;
         
     public static BufferedImage[] obrazek; //tablica przechowywująca obrazki
 
@@ -25,7 +25,7 @@ public class LoadPicture {
             obrazek = wczytaj();
         } catch (IOException ex) {
             System.out.println("Wystąpił błąd z wczytaniem obrazka");
-        }
+          }
         
     }
     
@@ -125,18 +125,43 @@ public class LoadPicture {
             if(strona==-1){
                 if(stan > 24 || stan < 23)
                     stan=23;
+                    
             }
             
             if(strona==1){
                 if(stan > 22 || stan<21)
                     stan=21;
+                    
             }             
             
            stan++;          
-        }    
+        }
+        
     }
+    public void setState() { // metoda cofa rękę podczas walki
+        if(getStrona() == 1) { // skierowany w prawo
+            if (time + 100 < System.currentTimeMillis()) {
+                time = System.currentTimeMillis();
+                stan=0;
+            
+            }
+        }
+        if(getStrona() == -1) { // skierowany w lewo
+            if (time + 100 < System.currentTimeMillis()) {
+                time = System.currentTimeMillis();
+                stan=10;
+            
+            }
+        
+        }
+    }
+    
     public int getState() {
         return stan;
+    }
+    
+    public int getStrona() {
+        return strona;
     }
 
 }

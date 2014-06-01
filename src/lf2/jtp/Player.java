@@ -28,17 +28,8 @@ public class Player {
     // Dane gracza
     private int HP;
     private String imie;
-   
-   
-    
-    public boolean prawa = false;
-    public boolean lewa = true;
-    public boolean dol = false;
-    public boolean gora = true;
-    
-    
-
-    
+  
+    // Konstruktory
     public Player() { 
         this(StaticData.losujSzerokosc(),StaticData.losujWysokosc(), new ControlPlayer());
         while(czyKolizja()) {
@@ -139,6 +130,14 @@ public class Player {
     
     // Walka
     
+    public void showHit() {
+        picture.uderz();
+    }
+    
+    public void hideHit() {
+        picture.setState();
+    }
+    
     public void uderz() {
         int me = StaticData.IndexOf(this);
  
@@ -146,27 +145,31 @@ public class Player {
             if(i != me) {
                 Point przeciwnik = StaticData.getPlayer(i).getPosition();
                 Point ja = new Point(pozx, pozy);
-                if(picture.strona == 1)
+                if(picture.getStrona() == 1)
                 if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx > 0) {
                     if (lastTimeHit + 500 < System.currentTimeMillis()) {
                         lastTimeHit = System.currentTimeMillis();
-                            picture.uderz();
+                            showHit();
                             StaticData.getPlayer(i).decreaseHP();
                             rysuj();
                     } 
                     
                 }
-                if(picture.strona==-1)
+                if(picture.getStrona() == -1)
                 if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx < 0) {
                     if (lastTimeHit + 500 < System.currentTimeMillis()) {
                         lastTimeHit = System.currentTimeMillis();
-                            picture.uderz();
+                            showHit();
                             StaticData.getPlayer(i).decreaseHP();
                             rysuj();
                     } 
                 }
             }
         }
+    }
+    
+    public void getBackHand() { // cofa cios
+        picture.setState();
     }
 
     
@@ -292,5 +295,9 @@ public class Player {
     
     public int getHP() {
         return HP;
+    }
+    
+    public int getPictureState() {
+        return picture.getState();
     }
 }
