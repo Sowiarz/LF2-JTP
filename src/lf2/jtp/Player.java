@@ -79,7 +79,7 @@ public class Player {
         if(pozx >= StaticData.screenWidth-StaticData.x2-StaticData.playerWidth) 
                 pozx = StaticData.screenWidth-StaticData.x2-StaticData.playerWidth;
         else 
-                pozx+=4;
+                pozx+=3;
         if(czyKolizja())
             pozx-=4;
         
@@ -93,7 +93,7 @@ public class Player {
         if(pozx <= StaticData.x1) 
                 pozx = StaticData.x1;
         else
-                pozx-=4;
+                pozx-=3;
         if(czyKolizja())
             pozx+=4;
         
@@ -105,7 +105,7 @@ public class Player {
         if(pozy >= StaticData.screenHeight-StaticData.y2-StaticData.playerHeight)
                 pozy = StaticData.screenHeight-StaticData.y2-StaticData.playerHeight;
         else
-                pozy+=4;
+                pozy+=3;
         if(czyKolizja())
             pozy-=4;
         
@@ -118,7 +118,7 @@ public class Player {
         if(pozy <= StaticData.y1)
                 pozy = StaticData.y1;
         else 
-                pozy-=4;
+                pozy-=3;
         if(czyKolizja())
             pozy+=4;
         
