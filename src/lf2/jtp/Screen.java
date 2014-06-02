@@ -65,6 +65,7 @@ public class Screen {
             
             if(StaticData.getPlayer(i).getSamowola()) {
                 StaticData.getPlayer(i).dodajCel(StaticData.getPlayer(0).getPosition());
+                if (StaticData.getPlayer(i).getLastTimeHit() + 1000 < System.currentTimeMillis()) // Gracz ma większe szanse z komputerem
                 StaticData.getPlayer(i).uderz();
             }
             

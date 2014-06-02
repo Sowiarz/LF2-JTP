@@ -22,7 +22,7 @@ public class Player {
     private int pozx;
     private int pozy;
 
-    public long time;
+    private long time;
     private long lastTimeHit;
     
     // Dane gracza
@@ -62,6 +62,7 @@ public class Player {
     
     public void rysuj() {
        pokazHP();
+       picture.setState();
        boolean drawImage = StaticData.ekran.drawImage(picture.getImage(), pozx, pozy, null);
        
     }
@@ -140,7 +141,7 @@ public class Player {
     
     public void uderz() {
         int me = StaticData.IndexOf(this);
- 
+        time = System.currentTimeMillis();
         for(int i = 0; i < StaticData.getNumberOfPlayers(); i++) {
             if(i != me) {
                 Point przeciwnik = StaticData.getPlayer(i).getPosition();
@@ -152,6 +153,7 @@ public class Player {
                             showHit();
                             StaticData.getPlayer(i).decreaseHP();
                             rysuj();
+                            picture.setState();
                     } 
                     
                 }
@@ -162,6 +164,7 @@ public class Player {
                             showHit();
                             StaticData.getPlayer(i).decreaseHP();
                             rysuj();
+                            picture.setState();
                     } 
                 }
             }
@@ -299,5 +302,8 @@ public class Player {
     
     public int getPictureState() {
         return picture.getState();
+    }
+    public long getLastTimeHit() {
+        return time;
     }
 }
