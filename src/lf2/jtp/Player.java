@@ -62,7 +62,7 @@ public class Player {
     
     public void rysuj() {
        pokazHP();
-       picture.setState();
+       picture.setState(); // jeśli gracz wykonał uderzenie to przywraca jego stan sprzed niego
        boolean drawImage = StaticData.ekran.drawImage(picture.getImage(), pozx, pozy, null);
        
     }
