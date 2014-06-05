@@ -39,8 +39,17 @@ public class Game implements Runnable {
       panel.add(canvas); //utworzenie okna + dodanie do niego canvas
       
       Control klawisze = new Control();
+      MouseControl mysz = new MouseControl();
+      
+      // Zapisanie obiektów w StaticData
+      
+      StaticData.klawiatura = klawisze;
+      StaticData.mysz = mysz;
+      
+      // Dodanie obsługi klawiatury i myszy
       
       canvas.addKeyListener(klawisze);
+      canvas.addMouseListener(mysz);
      
       
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Dzięki temu poprawnie zamyka się apka
@@ -79,8 +88,7 @@ public class Game implements Runnable {
          
          lastUpdateTime = currentUpdateTime;
          currentUpdateTime = System.nanoTime();
-         update((int) ((currentUpdateTime - lastUpdateTime)/(1000*1000)));
-         
+                  
          endLoopTime = System.nanoTime();
          deltaLoop = endLoopTime - beginLoopTime;
            
@@ -90,7 +98,7 @@ public class Game implements Runnable {
                try{
                    Thread.sleep((desiredDeltaLoop - deltaLoop)/(1000*1000));
                }catch(InterruptedException e){
-                   //Do nothing
+                   //Nic nie rób
                }
            }
       }
@@ -100,28 +108,15 @@ public class Game implements Runnable {
       Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
       StaticData.ekran = g;
       StaticData.ekran.clearRect(0, 0, monitor.width, monitor.height);
-      render(StaticData.ekran);
+      
+    // Wywołanie Klas wyświetlających
+      obiektScreen.odswiez();
+      
+      
       StaticData.ekran.dispose();
       bufferStrategy.show();
    }
-   
-   //TESTING
-   private double x = 0;
-   
-   /**
-    * Rewrite this method for your game
-    */
-   protected void update(int deltaTime){
-      x += deltaTime * 0.2;
-      while(x > 500){
-         x -= 500;
-      }
-   }   
-   
-   protected void render(Graphics2D g){
 
-      obiektScreen.odswiez();
-   }
    
    public static void main(String [] args){
       Game ex = new Game();

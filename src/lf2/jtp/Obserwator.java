@@ -1,5 +1,5 @@
 package lf2.jtp;
 
-interface Obserwator {
+public interface Obserwator {
     public void update(Object o);
 }

@@ -9,8 +9,6 @@ import java.util.HashMap;
 
 
 public class Screen {
-    private int ScreenW = StaticData.screenWidth;
-    private int ScreenH = StaticData.screenHeight;
     
     public Screen() {
         Player pierwszy = new Player(new ControlPlayer(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_CONTROL));

@@ -5,11 +5,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 
-public class Control implements KeyListener {
+public class Control implements KeyListener, Obserwowany {
     
     // Trzymanie HashMapy naciśniętych klawiszy 
     private static HashMap<Integer, Boolean> nacisnieteKlawisze = new HashMap<Integer, Boolean>();
+    // Lista obserwatorów tej klasy
+    private static ArrayList<Obserwator> obserwatorzy;
 
+    public void dodajObserwatora(Obserwator o) {
+        obserwatorzy.add(o);
+    }
+
+    public void usunObserwatora(Obserwator o) {
+        int i = obserwatorzy.indexOf(o);
+        obserwatorzy.remove(i);
+    }
+
+    public void powiadamiajObserwatorow(Object press) {
+        try {
+            for(Obserwator o : obserwatorzy) {
+                o.update(press);
+            }
+        }
+        catch (Exception e) {
+           //System.out.println("Wystąpił problem z powiadomieniem obserwatorów!");
+        }
+    }
+    
     @Override
     public void keyTyped(KeyEvent e) {
               
@@ -20,6 +42,7 @@ public class Control implements KeyListener {
         
         int keyCode = e.getKeyCode();
         nacisnieteKlawisze.put(keyCode, true);
+        powiadamiajObserwatorow(e);
         
         if(ifESC())
             System.exit(1); // Zamknięcie na przycisk ESC

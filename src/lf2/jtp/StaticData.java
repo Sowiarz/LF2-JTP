@@ -12,6 +12,11 @@ public class StaticData {
     public static int screenWidth; // szerokosc ekranu
     public static int screenHeight; // wysokość ekranu
     
+    // Obiekty odpowiedzialne za obsługę myszy i klawiatury
+    
+    public static Control klawiatura;
+    public static MouseControl mysz;
+    
     // Wielkosc gracza
     
     public static int playerWidth;
