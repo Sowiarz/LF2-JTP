@@ -46,6 +46,8 @@ public class Control implements KeyListener, Obserwowany {
         
         if(ifESC())
             System.exit(1); // Zamknięcie na przycisk ESC
+        if(ifP()) 
+            StaticData.setPause();
 
         // System.out.println(e.getKeyCode()); // pokazuje kod naciśniętego klawisza w konsoli
     }
@@ -94,6 +96,12 @@ public class Control implements KeyListener, Obserwowany {
         else
             return false;
     }   
+    public static boolean ifP() {
+        if(nacisnieteKlawisze.containsKey(KeyEvent.VK_P))
+            return true;
+        else
+            return false;
+    }
     public static HashMap<Integer, Boolean> getControl() {
         return nacisnieteKlawisze;
     }

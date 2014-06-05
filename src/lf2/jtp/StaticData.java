@@ -34,6 +34,9 @@ public class StaticData {
     // listy z używanymi obiektami
     private static ArrayList<Player> gracze = new ArrayList<Player>();
     
+    // pola odpowiedzialne za ustawienia gry
+    private static boolean pause = false;
+    
     
     private StaticData() {
         
@@ -51,6 +54,15 @@ public class StaticData {
     public static int getNumberOfPlayers() {
         return gracze.size();
     }
+    
+    public static boolean getPause() {
+        return pause;
+    }
+    
+    public static void setPause() {
+        pause = !pause;
+    }
+    
     public static void removePlayer(int id) {
         gracze.remove(id);
     }

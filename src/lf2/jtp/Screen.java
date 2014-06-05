@@ -27,6 +27,7 @@ public class Screen {
     }
     
     private void sterowanie(int i) {
+        
         try {
             for(Integer key : Control.getControl().keySet()) { // pętla for-each - iteracja po każdym elemencie naciśniętego klawisza
 
@@ -41,12 +42,12 @@ public class Screen {
 
                 if(StaticData.getPlayer(i).getControlUp() == key) 
                    StaticData.getPlayer(i).moveUp();
-                
+
                 if(StaticData.getPlayer(i).getControlHit()== key)  {// Do uderzeń
                    StaticData.getPlayer(i).showHit();
                    StaticData.getPlayer(i).uderz();                   
                 }
-                
+
                 // Metoda ma ukryć uderzenie po jego wykonaniu
                 if(StaticData.getPlayer(i).getPictureState() >= 21 && StaticData.getPlayer(i).getPictureState() <= 24) {
                     StaticData.getPlayer(i).hideHit();
@@ -56,6 +57,7 @@ public class Screen {
         catch (Exception e) {
            // Gdyby tego nie było wywalał by błąd raz na 5 przypadków :D
         }
+        
     
     }
     
@@ -73,12 +75,16 @@ public class Screen {
                 StaticData.removePlayer(i); // usunięcie gracza jeśli zginął
                 StaticData.addPlayer(new Player()); // Stworzenie nowego przeciwnika w miejsce gracza który zginął
             }
-                
-            StaticData.getPlayer(i).doCelu();
-            sterowanie(i); // odpowiada za sterowanie danym graczem
+            if(!StaticData.getPause()) {   
+                StaticData.getPlayer(i).doCelu();
+                sterowanie(i); // odpowiada za sterowanie danym graczem
+            }
+            else {
+                StaticData.menu.pokazInfo();
+            }
             StaticData.getPlayer(i).rysuj(); // na koniec pokazuje gracza po wszystkich przesunięciach
             //System.out.println("X:" + StaticData.getPlayer(0).getXPosition()+ " Y:" + StaticData.getPlayer(0).getYPosition());
-            StaticData.menu.pokazInfo();
+            
         }
         
     }

@@ -32,7 +32,7 @@ public class Window {
         Font czcionkaMenu = new Font("Arial", Font.BOLD, 20);
         StaticData.ekran.setFont(czcionkaMenu);
         StaticData.ekran.setColor(new Color(0, 0, 0));
-        StaticData.ekran.drawString("Okno informacyjne", granicaOkna.getP1X()+10, granicaOkna.getP1Y()+20);
+        StaticData.ekran.drawString("Pause", granicaOkna.getP1X()+20, granicaOkna.getP1Y()+30);
         
     }
     
