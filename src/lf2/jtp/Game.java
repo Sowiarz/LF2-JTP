@@ -46,6 +46,7 @@ public class Game implements Runnable {
       StaticData.klawiatura = klawisze;
       StaticData.mysz = mysz;
       
+      
       // Dodanie obsługi klawiatury i myszy
       
       canvas.addKeyListener(klawisze);

@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class MouseControl implements Obserwowany, MouseListener {
-    private ArrayList<Obserwator> obserwatorzy;
+    private static ArrayList<Obserwator> obserwatorzy;
 
     public void dodajObserwatora(Obserwator o) {
         obserwatorzy.add(o);
@@ -29,7 +29,7 @@ public class MouseControl implements Obserwowany, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+        powiadamiajObserwatorow(e);
     }
 
     @Override

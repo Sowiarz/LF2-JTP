@@ -21,7 +21,9 @@ public class Screen {
         for(int i=0; i<1; i++) { //tworzenie graczy dodatkowych      
             
             StaticData.addPlayer(new Player()); 
-        }        
+        }
+
+        
     }
     
     private void sterowanie(int i) {
@@ -77,6 +79,7 @@ public class Screen {
             StaticData.getPlayer(i).rysuj(); // na koniec pokazuje gracza po wszystkich przesunięciach
             //System.out.println("X:" + StaticData.getPlayer(0).getXPosition()+ " Y:" + StaticData.getPlayer(0).getYPosition());
         }
+        
     }
     
 }

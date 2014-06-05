@@ -67,4 +67,10 @@ public class StaticData {
         return (int) Math.sqrt((double)(((p2.getX()-p1.getX())*(p2.getX()-p1.getX()))+((p2.getY()-p1.getY())*(p2.getY()-p1.getY()))));
          
     }
+    public static int obliczPolozenieSrodkowe(int all, int length) {
+        int e,temp;
+        e=(int)all/2;
+        temp=(int)length/2;
+        return e-temp;
+    }
 }
