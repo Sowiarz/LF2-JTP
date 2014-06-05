@@ -10,7 +10,7 @@ public class Control implements KeyListener, Obserwowany {
     // Trzymanie HashMapy naciśniętych klawiszy 
     private static HashMap<Integer, Boolean> nacisnieteKlawisze = new HashMap<Integer, Boolean>();
     // Lista obserwatorów tej klasy
-    private static ArrayList<Obserwator> obserwatorzy;
+    private static ArrayList<Obserwator> obserwatorzy = new ArrayList<Obserwator>();
 
     public void dodajObserwatora(Obserwator o) {
         obserwatorzy.add(o);

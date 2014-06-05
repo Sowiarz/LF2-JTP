@@ -22,6 +22,12 @@ public class Border {
     public int getP1Y() {
         return punkt1.getY();
     }
+    public boolean czyNalezy(Point p) {
+        if(p.getX() >= punkt1.getX() && p.getX() <= punkt2.getX() && p.getY() >= punkt1.getY() && p.getY() <= punkt2.getY())
+            return true;
+        else
+            return false;
+    }
     
     
     

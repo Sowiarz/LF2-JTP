@@ -26,6 +26,8 @@ public class Game implements Runnable {
       StaticData.screenHeight = monitor.height;
       
       obiektScreen = new Screen();
+      Menu obiektMenu = new Menu();
+      StaticData.menu = obiektMenu;
       frame = new JFrame("LF2");
       
       JPanel panel = (JPanel) frame.getContentPane();
@@ -40,6 +42,7 @@ public class Game implements Runnable {
       
       Control klawisze = new Control();
       MouseControl mysz = new MouseControl();
+      mysz.dodajObserwatora(obiektMenu);
       
       // Zapisanie obiektów w StaticData
       

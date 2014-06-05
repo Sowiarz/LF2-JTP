@@ -17,6 +17,9 @@ public class StaticData {
     public static Control klawiatura;
     public static MouseControl mysz;
     
+    // Obiekt menu
+    public static Menu menu;
+    
     // Wielkosc gracza
     
     public static int playerWidth;

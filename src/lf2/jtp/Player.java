@@ -71,6 +71,7 @@ public class Player {
         String temp = String.valueOf(HP);
         temp = "HP:" + temp;
         Font czcionkaMenu = new Font("Arial", Font.BOLD, 12);
+        StaticData.ekran.setColor(new Color(255, 0, 0));
         StaticData.ekran.setFont(czcionkaMenu);
         StaticData.ekran.drawString(temp, pozx+15, (pozy-10));
     }

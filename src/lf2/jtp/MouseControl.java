@@ -5,10 +5,15 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class MouseControl implements Obserwowany, MouseListener {
-    private static ArrayList<Obserwator> obserwatorzy;
+    private static ArrayList<Obserwator> obserwatorzy = new ArrayList<Obserwator>();
 
     public void dodajObserwatora(Obserwator o) {
-        obserwatorzy.add(o);
+        try {
+            obserwatorzy.add(o);
+        } 
+        catch (Exception e) {
+            System.out.println("Nie można dodać!");
+        }
     }
 
     public void usunObserwatora(Obserwator o) {
