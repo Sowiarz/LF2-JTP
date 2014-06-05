@@ -12,7 +12,7 @@ public class Menu implements Obserwator {
     }
     
     public void pokazInfo() {
-        okno1 = new Window(200, 200);
+        okno1 = new Window(100, 50);
         okno1.pokazOkno();
     }
 
