@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class Player {
     Destination cele = new Destination();
-    public ControlPlayer sterowanie;
+    private ControlPlayer sterowanie;
     
     LoadPicture picture = new LoadPicture();
     
@@ -249,6 +249,10 @@ public class Player {
     
     public void setName(String i) {
         imie = i;
+    }
+    
+    public void setControl(ControlPlayer o) {
+        sterowanie = o;
     }
     
     public void setSamowola(boolean s) {
