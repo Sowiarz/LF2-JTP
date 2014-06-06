@@ -155,14 +155,14 @@ public class LoadPicture {
     
     public void setState() { // metoda cofa rękę podczas walki
         if(getStrona() == 1) { // skierowany w prawo
-            if (time + 300 < System.currentTimeMillis()) {
+            if (time + 500 < System.currentTimeMillis()) {
                 time = System.currentTimeMillis();
                 stan=0;
             
             }
         }
         if(getStrona() == -1) { // skierowany w lewo
-            if (time + 300 < System.currentTimeMillis()) {
+            if (time + 500 < System.currentTimeMillis()) {
                 time = System.currentTimeMillis();
                 stan=11;
             
