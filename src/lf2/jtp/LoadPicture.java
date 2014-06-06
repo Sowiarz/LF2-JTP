@@ -134,7 +134,7 @@ public class LoadPicture {
     }
     
     public void uderz(){
-        if (time + 300 < System.currentTimeMillis()) {
+        if (time + 100 < System.currentTimeMillis()) {
             time = System.currentTimeMillis();
             if(strona==-1){
                 if(stan > 24 || stan < 23)
