@@ -15,7 +15,8 @@ public class Ui {
     }
     public static void rysujPole() {
           
-        StaticData.ekran.drawImage(LoadPicture.background, 0, StaticData.y1, null);
+        //StaticData.ekran.drawImage(LoadPicture.background, 0, StaticData.y1, null);
+        StaticData.ekran.drawImage(LoadPicture.background, 0, 0, StaticData.screenWidth, StaticData.screenHeight, null);
             
     }
     /*public static void rysujPole() {
