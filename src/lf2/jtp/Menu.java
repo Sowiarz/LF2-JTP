@@ -1,7 +1,5 @@
 package lf2.jtp;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.MouseEvent;
 
 public class Menu implements Obserwator {
