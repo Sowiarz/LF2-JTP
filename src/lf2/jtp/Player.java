@@ -86,7 +86,6 @@ public class Player {
             pozx-=4;
         
         picture.moveRight();
-        
         rysuj();
 
     }
@@ -125,7 +124,7 @@ public class Player {
             pozy+=4;
         
         picture.moveUp();
-        
+      
         rysuj();
         
     }
@@ -149,10 +148,11 @@ public class Player {
                 Point ja = new Point(pozx, pozy);
                 if(picture.getStrona() == 1)
                 if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx > 0) {
-                    if (lastTimeHit + 500 < System.currentTimeMillis()) {
+                    if (lastTimeHit + 300 < System.currentTimeMillis()) {
                         lastTimeHit = System.currentTimeMillis();
                             showHit();
                             StaticData.getPlayer(i).decreaseHP();
+                            Sound.playSound();
                             rysuj();
                             picture.setState();
                     } 
@@ -160,10 +160,11 @@ public class Player {
                 }
                 if(picture.getStrona() == -1)
                 if(StaticData.odlegloscOdPunktow(ja, przeciwnik) < StaticData.playerWidth + 20 && StaticData.getPlayer(i).pozx-StaticData.getPlayer(me).pozx < 0) {
-                    if (lastTimeHit + 500 < System.currentTimeMillis()) {
+                    if (lastTimeHit + 300 < System.currentTimeMillis()) {
                         lastTimeHit = System.currentTimeMillis();
                             showHit();
                             StaticData.getPlayer(i).decreaseHP();
+                            Sound.playSound();
                             rysuj();
                             picture.setState();
                     } 
