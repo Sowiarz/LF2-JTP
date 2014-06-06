@@ -35,6 +35,7 @@ public class Screen {
                 break;
             case 2:
                 plansza1.show();
+                StaticData.menu.oknoZNazwa();
                 break;               
         }
 

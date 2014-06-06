@@ -20,6 +20,11 @@ public class Menu implements Obserwator {
     public boolean ifWindowClicked(Point p) {
         return okno1.ifWindowClicked(p);
     }
+    
+    public void oknoZNazwa() {
+        okno1 = new Window(10, 10, 150, 50);
+        okno1.oknoZNazwa();
+    }
 
     public void update(Object o) {
         if(o instanceof MouseEvent) {

@@ -20,6 +20,14 @@ public class Window {
         p2 = new Point(p1.getX()+szerokoscOkna, p1.getY()+wysokoscOkna);
         granicaOkna = new Border(p1, p2);
     }
+    public Window(int pozx, int pozy, int width, int height) {
+        wysokoscOkna = height;
+        szerokoscOkna = width;
+        
+        p1 = new Point(pozx, pozy);
+        p2 = new Point(p1.getX()+szerokoscOkna, p1.getY()+wysokoscOkna);
+        granicaOkna = new Border(p1, p2);
+    }
     
     public void zrobObramowanie(Color c) {
         StaticData.ekran.setColor(c);       
@@ -65,6 +73,13 @@ public class Window {
         StaticData.ekran.drawString("Nowa Gra", granicaOkna.getP1X()+20, granicaOkna.getP1Y()+30);
         //StaticData.ekran.drawString("Ustawienia", granicaOkna.getP1X()+20, granicaOkna.getP1Y()+60);
         
+    }
+    
+    public void oknoZNazwa() {
+        wypelijTlo();
+        zrobObramowanie();
+        ustawCzcionke();
+        StaticData.ekran.drawString("Little Fighter", granicaOkna.getP1X()+10, granicaOkna.getP1Y()+30);
     }
     
     public boolean ifWindowClicked(Point p) {
