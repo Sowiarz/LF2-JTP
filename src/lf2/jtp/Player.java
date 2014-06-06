@@ -133,7 +133,6 @@ public class Player {
     
     public void showHit() {
         picture.uderz();
-        Sound.play();
     }
     
     public void hideHit() {
@@ -154,7 +153,7 @@ public class Player {
                         lastTimeHit = System.currentTimeMillis();
                             showHit();
                             StaticData.getPlayer(i).decreaseHP();
-                            Sound.playSound();
+                            Sound.play();
                             rysuj();
                             picture.setState();
                     } 
@@ -166,7 +165,7 @@ public class Player {
                         lastTimeHit = System.currentTimeMillis();
                             showHit();
                             StaticData.getPlayer(i).decreaseHP();
-                            Sound.playSound();
+                            Sound.play();
                             rysuj();
                             picture.setState();
                     } 
