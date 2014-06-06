@@ -27,7 +27,7 @@ public class StaticData {
     
     // Zmienne pola rozgrywki gry - oznaczają marginesy
     public static int x1 = 10;
-    public static int y1 = 100;
+    public static int y1 = 180;
     public static int x2 = 10;
     public static int y2 = 10;
     
