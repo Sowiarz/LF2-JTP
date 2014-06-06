@@ -14,7 +14,12 @@ public class Ui {
         
     }
     public static void rysujPole() {
+          
+        StaticData.ekran.drawImage(LoadPicture.background, 0, StaticData.y1, null);
+            
+    }
+    /*public static void rysujPole() {
         StaticData.ekran.setColor(new Color(100, 0, 0));
         StaticData.ekran.fillRect(StaticData.x1, StaticData.y1, StaticData.screenWidth-StaticData.x1-StaticData.x2, StaticData.screenHeight-StaticData.y1-StaticData.y2);  
-    }
+    }*/
 }

@@ -1,6 +1,7 @@
 package lf2.jtp;
 
 import java.awt.image.BufferedImage;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -18,14 +19,16 @@ public class LoadPicture {
     private long time;
         
     public static BufferedImage[] obrazek; //tablica przechowywująca obrazki
-
+    public static Image background;
     public LoadPicture() {
         
         try {
             obrazek = wczytaj();
+            background = background();
         } catch (IOException ex) {
             System.out.println("Wystąpił błąd z wczytaniem obrazka");
           }
+        
         
     }
     
@@ -57,6 +60,18 @@ public class LoadPicture {
             StaticData.playerWidth = charWidth;
             
             return sprites;
+    }
+    
+    public Image background(){
+            Image imgs = null;
+            try{
+                imgs = ImageIO.read(new File("background.png"));
+                imgs = imgs.getScaledInstance((int)StaticData.screenWidth, (int)StaticData.screenHeight, ImageIO.read(new File("background.png")).SCALE_SMOOTH);
+            }catch (IOException e) {
+                System.out.println("Wystąpił błąd z wczytaniem obrazka!");
+            }  
+            return imgs;
+            
     }
     
     public BufferedImage getImage() {
@@ -119,9 +134,8 @@ public class LoadPicture {
     }
     
     public void uderz(){
-        if (time + 100 < System.currentTimeMillis()) {
+        if (time + 300 < System.currentTimeMillis()) {
             time = System.currentTimeMillis();
-            
             if(strona==-1){
                 if(stan > 24 || stan < 23)
                     stan=23;
