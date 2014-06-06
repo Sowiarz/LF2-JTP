@@ -25,7 +25,8 @@ public class Menu implements Obserwator {
         if(o instanceof MouseEvent) {
             MouseEvent t = (MouseEvent)o;
             if(ifWindowClicked(new Point(t.getX(), t.getY()))) {
-                StaticData.setReadyGame(1);
+                if(StaticData.getReady() != 2)
+                    StaticData.setReadyGame(1);
             }
         }
             

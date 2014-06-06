@@ -133,6 +133,7 @@ public class Player {
     
     public void showHit() {
         picture.uderz();
+        Sound.play();
     }
     
     public void hideHit() {
@@ -140,6 +141,7 @@ public class Player {
     }
     
     public void uderz() {
+        
         int me = StaticData.IndexOf(this);
         time = System.currentTimeMillis();
         for(int i = 0; i < StaticData.getNumberOfPlayers(); i++) {
