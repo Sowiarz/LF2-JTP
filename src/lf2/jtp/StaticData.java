@@ -36,6 +36,7 @@ public class StaticData {
     
     // pola odpowiedzialne za ustawienia gry
     private static boolean pause = false;
+    private static int readyGame = 0;
     
     
     private StaticData() {
@@ -57,6 +58,14 @@ public class StaticData {
     
     public static boolean getPause() {
         return pause;
+    }
+    
+    public static int getReady() {
+        return readyGame;
+    }
+    
+    public static void setReadyGame(int o) {
+        readyGame = o;
     }
     
     public static void setPause() {

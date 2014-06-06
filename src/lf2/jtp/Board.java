@@ -4,9 +4,24 @@ package lf2.jtp;
 import java.awt.event.KeyEvent;
 
 public class Board implements InterfaceWindow, Obserwator {
-    private int numberEnemy;
+    private static Board unikalnaInstancja;
+    private int numberEnemy = 0;
     
-    public Board(int numberOfEnemy) {
+    private Board() {
+        
+    }
+    public static Board getSingleton() {
+        if(unikalnaInstancja == null) {
+            unikalnaInstancja = new Board();
+        }
+        return unikalnaInstancja;
+    }
+    
+    public static void resetBoard() {
+        unikalnaInstancja = new Board();        
+    }
+    
+    public void addEnemy(int numberOfEnemy) {
         numberEnemy = numberOfEnemy;
         for(int i = 0; i < numberOfEnemy; i++) {
             StaticData.addPlayer(new Player()); 
@@ -76,7 +91,7 @@ public class Board implements InterfaceWindow, Obserwator {
                 sterowanie(i); // odpowiada za sterowanie danym graczem
             }
             else {
-                StaticData.menu.pokazInfo();
+                StaticData.menu.pokazPause();
             }
             StaticData.getPlayer(i).rysuj(); // na koniec pokazuje gracza po wszystkich przesunięciach
             //System.out.println("X:" + StaticData.getPlayer(0).getXPosition()+ " Y:" + StaticData.getPlayer(0).getYPosition());

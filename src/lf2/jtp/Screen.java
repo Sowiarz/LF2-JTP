@@ -1,25 +1,43 @@
 
 package lf2.jtp;
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
-import java.util.HashMap;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 
 public class Screen {
     Board plansza1;
+    
+    Deque<InterfaceWindow> okienka = new ArrayDeque<InterfaceWindow>();
+    
     public Screen() {
-          plansza1 = new Board(2);
-          plansza1.addPlayer(new ControlPlayer(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_CONTROL));
-          plansza1.addPlayer(new ControlPlayer(KeyEvent.VK_D, KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_SPACE));
+                   
+    }
+    
+    public void ustawGre() {
         
+        plansza1.addPlayer(new ControlPlayer(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_CONTROL));
+        plansza1.addPlayer(new ControlPlayer(KeyEvent.VK_D, KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_SPACE));
     }
     
     
     public void odswiez() {
-        plansza1.show();
+        switch (StaticData.getReady()) {
+            case 0:
+                StaticData.menu.oknoStartowe();
+                break; 
+            case 1:
+                plansza1 = Board.getSingleton();
+                plansza1.addEnemy(1);
+                ustawGre();
+                StaticData.setReadyGame(2);
+                break;
+            case 2:
+                plansza1.show();
+                break;               
+        }
+
         
     }
     

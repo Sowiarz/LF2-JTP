@@ -21,21 +21,55 @@ public class Window {
         granicaOkna = new Border(p1, p2);
     }
     
-    public void pokazOkno() {
-        
-        StaticData.ekran.setColor(new Color(255, 255, 255));       
-        StaticData.ekran.fillRect(granicaOkna.getP1X(), granicaOkna.getP1Y(), granicaOkna.podajSzerokosc(), granicaOkna.podajWysokosc());
+    public void zrobObramowanie(Color c) {
+        StaticData.ekran.setColor(c);       
+        StaticData.ekran.drawRect(granicaOkna.getP1X(), granicaOkna.getP1Y(), granicaOkna.podajSzerokosc(), granicaOkna.podajWysokosc());
+        StaticData.ekran.drawRect(granicaOkna.getP1X()+1, granicaOkna.getP1Y()+1, granicaOkna.podajSzerokosc()-2, granicaOkna.podajWysokosc()-2);
+        StaticData.ekran.drawRect(granicaOkna.getP1X()+2, granicaOkna.getP1Y()+2, granicaOkna.podajSzerokosc()-3, granicaOkna.podajWysokosc()-3);
+    }
+    public void zrobObramowanie() {
         StaticData.ekran.setColor(new Color(0, 0, 255));       
         StaticData.ekran.drawRect(granicaOkna.getP1X(), granicaOkna.getP1Y(), granicaOkna.podajSzerokosc(), granicaOkna.podajWysokosc());
         StaticData.ekran.drawRect(granicaOkna.getP1X()+1, granicaOkna.getP1Y()+1, granicaOkna.podajSzerokosc()-2, granicaOkna.podajWysokosc()-2);
         StaticData.ekran.drawRect(granicaOkna.getP1X()+2, granicaOkna.getP1Y()+2, granicaOkna.podajSzerokosc()-3, granicaOkna.podajWysokosc()-3);
+    }
+    public void wypelijTlo() {
+        StaticData.ekran.setColor(new Color(255, 255, 255));       
+        StaticData.ekran.fillRect(granicaOkna.getP1X(), granicaOkna.getP1Y(), granicaOkna.podajSzerokosc(), granicaOkna.podajWysokosc());
+    }
+    public void wypelijTlo(Color c) {
+        StaticData.ekran.setColor(c);       
+        StaticData.ekran.fillRect(granicaOkna.getP1X(), granicaOkna.getP1Y(), granicaOkna.podajSzerokosc(), granicaOkna.podajWysokosc());
+    }
+    public void ustawCzcionke() {
         Font czcionkaMenu = new Font("Arial", Font.BOLD, 20);
         StaticData.ekran.setFont(czcionkaMenu);
         StaticData.ekran.setColor(new Color(0, 0, 0));
+    }
+    
+    
+    public void oknoPause() {
+        wypelijTlo();
+        zrobObramowanie();  
+        ustawCzcionke();
+
         StaticData.ekran.drawString("Pause", granicaOkna.getP1X()+20, granicaOkna.getP1Y()+30);
         
     }
     
+    public void oknoStart() {
+        wypelijTlo();
+        zrobObramowanie();
+        ustawCzcionke();
+        
+        StaticData.ekran.drawString("Nowa Gra", granicaOkna.getP1X()+20, granicaOkna.getP1Y()+30);
+        //StaticData.ekran.drawString("Ustawienia", granicaOkna.getP1X()+20, granicaOkna.getP1Y()+60);
+        
+    }
+    
+    public boolean ifWindowClicked(Point p) {
+        return granicaOkna.czyNalezy(p);
+    }
     public Border getWindowBorder() {
         return granicaOkna;
     }
