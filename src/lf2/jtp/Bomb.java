@@ -73,7 +73,7 @@ public class Bomb {
             stan++;
         }
             
-        if (time + 100 < System.currentTimeMillis()) {
+        if (time + 10 < System.currentTimeMillis()) {
             time = System.currentTimeMillis();
             if(stan < 42)
             stan++;
