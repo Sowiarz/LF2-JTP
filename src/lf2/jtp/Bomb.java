@@ -13,6 +13,7 @@ public class Bomb {
     private int bombWidth=32;
     private int bombHeight=32;
     private int stan = 0;
+    private int stan2 = 0;
     
     // właściwości bomby
     private int pozx;
@@ -69,8 +70,16 @@ public class Bomb {
     
     public void show() {
         if(stan==26){
+            if(stan2==3)
+            {
             wybuch();
             stan++;
+            }
+            else
+            {
+            stan=0;
+            stan2++;
+            }
         }
             
         if (time + 50 < System.currentTimeMillis()) {
