@@ -83,9 +83,11 @@ public class Board implements InterfaceWindow, Obserwator {
     }
 
     private void zarzadzajBombami() {
-        if(StaticData.getNumberOfBomb() < 5) {
-            int i = StaticData.addBomb(new Bomb());
-            StaticData.getBomb(i).show();
+        if(StaticData.getNumberOfBomb() < 7) {
+            if(System.currentTimeMillis() % 50 == 0) {
+                int i = StaticData.addBomb(new Bomb());
+                StaticData.getBomb(i).show();
+            }
         }
         for(int i=0; i<StaticData.getNumberOfBomb(); i++) {
             StaticData.getBomb(i).show();
