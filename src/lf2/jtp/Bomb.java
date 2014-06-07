@@ -61,9 +61,15 @@ public class Bomb {
                 int y1 = StaticData.getPlayer(i).getYPosition();
 
                 Point odleglosc = new Point(x1, y1);
+                if(StaticData.odlegloscOdPunktow(odleglosc, new Point(pozx, pozy)) < 150) {
+                    StaticData.getPlayer(i).setHP(StaticData.getPlayer(i).getHP()-25);
+                }    
                 if(StaticData.odlegloscOdPunktow(odleglosc, new Point(pozx, pozy)) < 100) {
                     StaticData.getPlayer(i).setHP(StaticData.getPlayer(i).getHP()-25);
                 }    
+                if(StaticData.odlegloscOdPunktow(odleglosc, new Point(pozx, pozy)) < 50) {
+                    StaticData.getPlayer(i).setHP(StaticData.getPlayer(i).getHP()-25);
+                }                
             }
     }
  
