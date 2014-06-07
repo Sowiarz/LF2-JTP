@@ -23,11 +23,14 @@ public class Screen {
     
     
     public void odswiez() {
+        Ui.rysujMenuGlowne();
         switch (StaticData.getReady()) {
             case 0:
+                Ui.rysujMenuGlowne();
                 StaticData.menu.oknoStartowe();
                 break; 
             case 1:
+                Ui.rysujMenuGlowne();
                 plansza1 = Board.getSingleton();
                 plansza1.addEnemy(1);
                 ustawGre();

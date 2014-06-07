@@ -20,11 +20,14 @@ public class LoadPicture {
         
     public static BufferedImage[] obrazek; //tablica przechowywująca obrazki
     public static Image background;
+    public static Image mainMenu;
+    
     public LoadPicture() {
         
         try {
             obrazek = wczytaj();
             background = background();
+            mainMenu = mainMenu();
         } catch (IOException ex) {
             System.out.println("Wystąpił błąd z wczytaniem obrazka");
           }
@@ -63,6 +66,18 @@ public class LoadPicture {
     }
     
     public Image background(){
+            Image imgs = null;
+            try{
+                imgs = ImageIO.read(new File("background.png"));
+                imgs = imgs.getScaledInstance((int)StaticData.screenWidth, (int)StaticData.screenHeight, ImageIO.read(new File("background.png")).SCALE_SMOOTH);
+            }catch (IOException e) {
+                System.out.println("Wystąpił błąd z wczytaniem obrazka!");
+            }  
+            return imgs;
+            
+    }
+    
+    public Image mainMenu(){
             Image imgs = null;
             try{
                 imgs = ImageIO.read(new File("background.png"));
