@@ -112,6 +112,8 @@ public class Game implements Runnable {
       Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
       StaticData.ekran = g;
       StaticData.ekran.clearRect(0, 0, monitor.width, monitor.height);
+      StaticData.ekran.setColor(new Color(28, 32, 87)); // Odpowiedzialne za ustawienie tła na początku
+      StaticData.ekran.fillRect(0, 0, monitor.width, monitor.height);
       LoadImage.getSingleton();
     // Wywołanie Klas wyświetlających
       obiektScreen.odswiez();
