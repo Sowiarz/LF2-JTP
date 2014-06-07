@@ -9,9 +9,9 @@ import javax.imageio.ImageIO;
 public class Bomb {
     // obrazek
     private static BufferedImage[] bomba;
-    private int charCols;
-    private int charWidth;
-    private int charHeight;
+    private int charCols=41;
+    private int bombWidth=32;
+    private int bombHeight=32;
     private int stan = 0;
     
     // właściwości bomby
@@ -19,8 +19,20 @@ public class Bomb {
     private int pozy;
     private long timeCreate =  System.currentTimeMillis();
     private long time;
-    private boolean czyWybuchla = false;
+    private boolean czyWybuchla;
     
+    public Bomb() {
+        pozx = StaticData.losujSzerokosc();
+        pozy = StaticData.losujWysokosc();
+        timeCreate =  System.currentTimeMillis();
+        czyWybuchla = false;
+        try{
+        bomba=wczytaj();    
+        }catch(IOException e){
+            System.out.println("IOEXCEPTION");
+        }
+    }
+    /*
     public Bomb(int x, int y) {
         if(bomba == null) {
             try {
@@ -32,21 +44,21 @@ public class Bomb {
         pozx = x;
         pozy = y;
     }
-    
+    */
     private BufferedImage[] wczytaj() throws IOException {
         // całość do poprawy
-        BufferedImage[] bomba = new BufferedImage[40];
+        BufferedImage[] bomba = new BufferedImage[45];
         BufferedImage imgs = null;
 
         try{
-            imgs = ImageIO.read(new File("testerbackup.png"));
+            imgs = ImageIO.read(new File("bomb.png"));
         }catch (IOException e) {
             System.out.println("Wystąpił błąd z wczytaniem obrazka!");
         }
 
         for (int i = 0; i < charCols; i++) {
 
-              bomba[i] = imgs.getSubimage(i * charWidth, 0, charWidth, charHeight);
+              bomba[i] = imgs.getSubimage(i * bombWidth, 0, bombWidth, bombHeight);
 
         }
 
@@ -54,7 +66,6 @@ public class Bomb {
     }
     
     private void wybuch() {
-        if(!czyWybuchla) {
             for(int i = 0; i < StaticData.getNumberOfPlayers(); i++) {
 
                 int x1 = StaticData.getPlayer(i).getXPosition();
@@ -65,30 +76,50 @@ public class Bomb {
                     StaticData.getPlayer(i).setHP(StaticData.getPlayer(i).getHP()-25);
                 }                       
             }
-            czyWybuchla = true;
-        }
-        else {
             // stan++ - tak aby dokończyć animacje wybuchu i generować kolejne klatki za każdym wywołaniem wybuch();
-            if(stan == charCols) {
-                StaticData.removeBomb(this); // usunięcie bomby z gry po wybuchu
+                if(stan == 41) {
+                czyWybuchla = true;
+                StaticData.removeBomb(this);
+                // usunięcie bomby z gry po wybuchu
             }
-                
-        }
+           
     }
     
     public void show() {
         if(!czyWybuchla) {
-            if (time + 10 < System.currentTimeMillis()) {
-                time = System.currentTimeMillis();
-                stan++;
-                // tutaj warunek żeby się paliła, ale jeszcze nie wybuchała
-            }
+
 //            if((System.currentTimeMillis()-timeCreate) > ?) {
+            if(stan==26)
                    wybuch();
 //            }
+        }   
+        if (time + 100 < System.currentTimeMillis()) {
+            time = System.currentTimeMillis();
+            if(stan < 42)
+            stan++;
         }
+        
         StaticData.ekran.drawImage(bomba[stan], pozx, pozy, null);
     }
+    /*
+    public boolean czyKolizja() {
+        for(int i = 0; i < StaticData.getNumberOfPlayers(); i++) {
+                            
+                int x1 = StaticData.getPlayer(i).getXPosition();
+                int y1 = StaticData.getPlayer(i).getYPosition();
+                
+                if((pozx < x1+StaticData.playerWidth) && (pozx > x1-StaticData.playerWidth) && (pozy < y1+StaticData.playerHeight) && (pozy > y1-StaticData.playerHeight)) {
+                    if(StaticData.getPlayer(i).getHP() != 100) {
+                        StaticData.getPlayer(i).setHP(100);
+                        StaticData.removeBomb(this);
+                        return true;
+                    }
+                }                
+            }
+        
+        return false;
+    }*/
     
+   
     
 }

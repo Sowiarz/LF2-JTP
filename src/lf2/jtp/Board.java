@@ -81,8 +81,16 @@ public class Board implements InterfaceWindow, Obserwator {
             StaticData.getMedKit(i).czyKolizja();
         }
     }
+
     private void zarzadzajBombami() {
-        // do napisania
+        if(StaticData.getNumberOfBomb() == 0) {
+            int i = StaticData.addBomb(new Bomb());
+            StaticData.getBomb(i).show();
+        }
+        for(int i=0; i<StaticData.getNumberOfBomb(); i++) {
+            StaticData.getBomb(i).show();
+//            StaticData.getBomb(i).czyKolizja();
+        }
         
     }
 
@@ -91,6 +99,7 @@ public class Board implements InterfaceWindow, Obserwator {
     public void show() {
         Ui.rysujPlansze();
         zarzadzajApteczkami();
+        zarzadzajBombami();
         for(int i=0; i<StaticData.getNumberOfPlayers(); i++) {
             
             if(StaticData.getPlayer(i).getSamowola()) {

@@ -21,7 +21,7 @@ public class LoadImage {
             mainMenu = mainMenu();
             nazwa = logo();
             newGame = newGame();
-            bomb = bomb();
+    //        bomb = bomb();
             medkit = medkit();
     }
     
@@ -66,6 +66,7 @@ public class LoadImage {
             return imgs;
             
     }
+    /*
     private Image bomb(){
             Image imgs = null;
             try{
@@ -76,7 +77,7 @@ public class LoadImage {
             }  
             return imgs;
             
-    }
+    }*/
     private Image medkit(){
             Image imgs = null;
             try{
