@@ -70,11 +70,10 @@ public class Board implements InterfaceWindow, Obserwator {
            // Gdyby tego nie było wywalał by błąd raz na 5 przypadków :D
         }
     }
-     private void zarzadzajBombami() {
+    private void zarzadzajApteczkami() {
         
         if(StaticData.getNumberOfMedKit() == 0) {
             int i = StaticData.addMedKit(new MedKit());
-            System.out.println(i);
             StaticData.getMedKit(i).show();
         }
         for(int i=0; i<StaticData.getNumberOfMedKit(); i++) {
@@ -82,12 +81,16 @@ public class Board implements InterfaceWindow, Obserwator {
             StaticData.getMedKit(i).czyKolizja();
         }
     }
+    private void zarzadzajBombami() {
+        // do napisania
+        
+    }
 
     
     
     public void show() {
         Ui.rysujPlansze();
-        zarzadzajBombami();
+        zarzadzajApteczkami();
         for(int i=0; i<StaticData.getNumberOfPlayers(); i++) {
             
             if(StaticData.getPlayer(i).getSamowola()) {

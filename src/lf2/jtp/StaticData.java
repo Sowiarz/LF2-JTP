@@ -36,6 +36,8 @@ public class StaticData {
 
     private static ArrayList<MedKit> apteczki = new ArrayList<MedKit>();
     
+    private static ArrayList<Bomb> bomby = new ArrayList<Bomb>();
+    
     // pola odpowiedzialne za ustawienia gry
     private static boolean pause = false;
     private static int readyGame = 0;
@@ -78,7 +80,26 @@ public class StaticData {
         apteczki.remove(apteczki.indexOf(o));
     }
     
+    // Zarządzanie bombami
+    public static int addBomb(Bomb o) {
+        bomby.add(o);
+        return bomby.indexOf(o);
+    }
+    public static Bomb getBomb(int id) {
+        return bomby.get(id);
+    }
+    public static int getBombID(int Bomb) {
+        return bomby.indexOf(Bomb);
+    }
+    public static int getNumberOfBomb() {
+        return bomby.size();
+    }
+    public static void removeBomb(Bomb o) {
+        bomby.remove(bomby.indexOf(o));
+    }
     
+    
+    // Dalsze opcje gry
     public static boolean getPause() {
         return pause;
     }

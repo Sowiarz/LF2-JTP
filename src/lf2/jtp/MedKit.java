@@ -21,9 +21,11 @@ public class MedKit {
                 int y1 = StaticData.getPlayer(i).getYPosition();
                 
                 if((pozx < x1+StaticData.playerWidth) && (pozx > x1-StaticData.playerWidth) && (pozy < y1+StaticData.playerHeight) && (pozy > y1-StaticData.playerHeight)) {
-                    StaticData.getPlayer(i).setHP(100);
-                StaticData.removeMedKit(this);
-                    return true;
+                    if(StaticData.getPlayer(i).getHP() != 100) {
+                        StaticData.getPlayer(i).setHP(100);
+                        StaticData.removeMedKit(this);
+                        return true;
+                    }
                 }                
             }
         

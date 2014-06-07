@@ -19,7 +19,8 @@ public class LoadPicture {
     private int strona = 1;
     private long time;
         
-    public static BufferedImage[] obrazek; //tablica przechowywująca obrazki
+    public static BufferedImage[] obrazek; //tablica przechowywująca obrazki przedstawiajace gracza
+   
 
     
     public LoadPicture() {        
