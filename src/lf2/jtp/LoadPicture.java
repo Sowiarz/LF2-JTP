@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 public class LoadPicture {
     
+    
     private int charWidth = 60;
     private int charHeight = 85;
     private int charFightWidth = 92;
@@ -19,21 +20,16 @@ public class LoadPicture {
     private long time;
         
     public static BufferedImage[] obrazek; //tablica przechowywująca obrazki
-    public static Image background;
-    public static Image mainMenu;
+
     
-    public LoadPicture() {
-        
+    public LoadPicture() {        
         try {
             obrazek = wczytaj();
-            background = background();
-            mainMenu = mainMenu();
         } catch (IOException ex) {
             System.out.println("Wystąpił błąd z wczytaniem obrazka");
-          }
-        
-        
+          }        
     }
+    
     
 
     private BufferedImage[] wczytaj() throws IOException {
@@ -65,7 +61,7 @@ public class LoadPicture {
             return sprites;
     }
     
-    public Image background(){
+    private Image background(){
             Image imgs = null;
             try{
                 imgs = ImageIO.read(new File("background.png"));
@@ -77,11 +73,33 @@ public class LoadPicture {
             
     }
     
-    public Image mainMenu(){
+    private Image mainMenu(){
             Image imgs = null;
             try{
-                imgs = ImageIO.read(new File("background.png"));
+                imgs = ImageIO.read(new File("menu.png"));
                 imgs = imgs.getScaledInstance((int)StaticData.screenWidth, (int)StaticData.screenHeight, ImageIO.read(new File("background.png")).SCALE_SMOOTH);
+            }catch (IOException e) {
+                System.out.println("Wystąpił błąd z wczytaniem obrazka!");
+            }  
+            return imgs;
+            
+    }
+    private Image logo(){
+            Image imgs = null;
+            try{
+                imgs = ImageIO.read(new File("logo.png"));
+                //imgs = imgs.getScaledInstance((int)StaticData.screenWidth, (int)StaticData.screenHeight, ImageIO.read(new File("background.png")).SCALE_SMOOTH);
+            }catch (IOException e) {
+                System.out.println("Wystąpił błąd z wczytaniem obrazka!");
+            }  
+            return imgs;
+            
+    }
+    private Image newGame(){
+            Image imgs = null;
+            try{
+                imgs = ImageIO.read(new File("newgame.png"));
+                //imgs = imgs.getScaledInstance((int)StaticData.screenWidth, (int)StaticData.screenHeight, ImageIO.read(new File("background.png")).SCALE_SMOOTH);
             }catch (IOException e) {
                 System.out.println("Wystąpił błąd z wczytaniem obrazka!");
             }  

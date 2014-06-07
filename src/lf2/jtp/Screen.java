@@ -23,7 +23,7 @@ public class Screen {
     
     
     public void odswiez() {
-        Ui.rysujMenuGlowne();
+        
         switch (StaticData.getReady()) {
             case 0:
                 Ui.rysujMenuGlowne();

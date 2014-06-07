@@ -66,19 +66,20 @@ public class Window {
     }
     
     public void oknoStart() {
-        wypelijTlo();
-        zrobObramowanie();
-        ustawCzcionke();
-        StaticData.ekran.drawString("Nowa Gra", granicaOkna.getP1X()+20, granicaOkna.getP1Y()+30);
+        StaticData.ekran.drawImage(LoadImage.newGame, granicaOkna.getP1X(), granicaOkna.getP1Y(), null);
+        
+        //StaticData.ekran.drawString("Nowa Gra", granicaOkna.getP1X()+20, granicaOkna.getP1Y()+30);
         //StaticData.ekran.drawString("Ustawienia", granicaOkna.getP1X()+20, granicaOkna.getP1Y()+60);
+        
         
     }
     
     public void oknoZNazwa() {
-        wypelijTlo();
-        zrobObramowanie();
-        ustawCzcionke();
-        StaticData.ekran.drawString("Little Fighter", granicaOkna.getP1X()+10, granicaOkna.getP1Y()+30);
+//        wypelijTlo();
+//        zrobObramowanie();
+//        ustawCzcionke();
+//        StaticData.ekran.drawString("Little Fighter", granicaOkna.getP1X()+10, granicaOkna.getP1Y()+30);
+        StaticData.ekran.drawImage(LoadImage.nazwa, granicaOkna.getP1X(), granicaOkna.getP1Y(), 360, 50, null);
     }
     
     public boolean ifWindowClicked(Point p) {

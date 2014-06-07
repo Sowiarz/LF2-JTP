@@ -112,7 +112,7 @@ public class Game implements Runnable {
       Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
       StaticData.ekran = g;
       StaticData.ekran.clearRect(0, 0, monitor.width, monitor.height);
-      
+      LoadImage.getSingleton();
     // Wywołanie Klas wyświetlających
       obiektScreen.odswiez();
       

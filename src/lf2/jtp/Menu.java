@@ -14,7 +14,7 @@ public class Menu implements Obserwator {
         okno1.oknoPause();
     }
     public void oknoStartowe() {
-        okno1 = new Window(130, 50);
+        okno1 = new Window(383, 58);
         okno1.oknoStart();
     }
     public boolean ifWindowClicked(Point p) {

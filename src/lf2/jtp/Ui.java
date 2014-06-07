@@ -14,11 +14,11 @@ public class Ui {
         
     }
     public static void rysujMenuGlowne() {
-        StaticData.ekran.drawImage(LoadPicture.mainMenu, 0, 0, StaticData.screenWidth, StaticData.screenHeight, null);
+        StaticData.ekran.drawImage(LoadImage.mainMenu, 0, 0, StaticData.screenWidth, StaticData.screenHeight, null);
     }
     public static void rysujPole() {          
         //StaticData.ekran.drawImage(LoadPicture.background, 0, StaticData.y1, null);
-        StaticData.ekran.drawImage(LoadPicture.background, 0, 0, StaticData.screenWidth, StaticData.screenHeight, null);
+        StaticData.ekran.drawImage(LoadImage.background, 0, 0, StaticData.screenWidth, StaticData.screenHeight, null);
             
     }
     /*public static void rysujPole() {
