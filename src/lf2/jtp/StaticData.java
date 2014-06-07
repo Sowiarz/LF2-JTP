@@ -33,6 +33,8 @@ public class StaticData {
     
     // listy z używanymi obiektami
     private static ArrayList<Player> gracze = new ArrayList<Player>();
+
+    private static ArrayList<MedKit> apteczki = new ArrayList<MedKit>();
     
     // pola odpowiedzialne za ustawienia gry
     private static boolean pause = false;
@@ -42,6 +44,8 @@ public class StaticData {
     private StaticData() {
         
     }
+    
+    //Zarządzenie graczami
     public static int addPlayer(Player gracz) {
         gracze.add(gracz);
         return gracze.indexOf(gracz);
@@ -55,6 +59,25 @@ public class StaticData {
     public static int getNumberOfPlayers() {
         return gracze.size();
     }
+    // Zarządzanie apteczkami
+    
+    public static int addMedKit(MedKit o) {
+        apteczki.add(o);
+        return apteczki.indexOf(o);
+    }
+    public static MedKit getMedKit(int id) {
+        return apteczki.get(id);
+    }
+    public static int getMedKitID(int MedKit) {
+        return apteczki.indexOf(MedKit);
+    }
+    public static int getNumberOfMedKit() {
+        return apteczki.size();
+    }
+    public static void removeMedKit(MedKit o) {
+        apteczki.remove(apteczki.indexOf(o));
+    }
+    
     
     public static boolean getPause() {
         return pause;

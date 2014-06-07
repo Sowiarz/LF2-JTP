@@ -21,7 +21,7 @@ public class Screen {
         plansza1.addPlayer(new ControlPlayer(KeyEvent.VK_D, KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_SPACE));
     }
     
-    
+     
     public void odswiez() {
         
         switch (StaticData.getReady()) {
@@ -39,6 +39,7 @@ public class Screen {
             case 2:
                 plansza1.show();
                 StaticData.menu.oknoZNazwa();
+                             
                 break;               
         }
 

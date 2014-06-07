@@ -70,10 +70,24 @@ public class Board implements InterfaceWindow, Obserwator {
            // Gdyby tego nie było wywalał by błąd raz na 5 przypadków :D
         }
     }
+     private void zarzadzajBombami() {
+        
+        if(StaticData.getNumberOfMedKit() == 0) {
+            int i = StaticData.addMedKit(new MedKit());
+            System.out.println(i);
+            StaticData.getMedKit(i).show();
+        }
+        for(int i=0; i<StaticData.getNumberOfMedKit(); i++) {
+            StaticData.getMedKit(i).show();
+            StaticData.getMedKit(i).czyKolizja();
+        }
+    }
+
     
     
     public void show() {
         Ui.rysujPlansze();
+        zarzadzajBombami();
         for(int i=0; i<StaticData.getNumberOfPlayers(); i++) {
             
             if(StaticData.getPlayer(i).getSamowola()) {
@@ -103,7 +117,7 @@ public class Board implements InterfaceWindow, Obserwator {
         
         if(o instanceof KeyEvent) {
             KeyEvent key = (KeyEvent)o;
-            sterowanie(key.getKeyCode());
+           // sterowanie(key.getKeyCode());
         }
         
     }

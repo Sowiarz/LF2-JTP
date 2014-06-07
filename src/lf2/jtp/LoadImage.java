@@ -12,7 +12,8 @@ public class LoadImage {
     public static Image mainMenu;
     public static Image nazwa;
     public static Image newGame;
-    
+    public static Image bomb;
+    public static Image medkit;
     
     private LoadImage() {
 
@@ -20,6 +21,8 @@ public class LoadImage {
             mainMenu = mainMenu();
             nazwa = logo();
             newGame = newGame();
+            bomb = bomb();
+            medkit = medkit();
     }
     
     public static LoadImage getSingleton() {
@@ -56,6 +59,28 @@ public class LoadImage {
             Image imgs = null;
             try{
                 imgs = ImageIO.read(new File("logo.png"));
+                //imgs = imgs.getScaledInstance((int)StaticData.screenWidth, (int)StaticData.screenHeight, ImageIO.read(new File("background.png")).SCALE_SMOOTH);
+            }catch (IOException e) {
+                System.out.println("Wystąpił błąd z wczytaniem obrazka!");
+            }  
+            return imgs;
+            
+    }
+    private Image bomb(){
+            Image imgs = null;
+            try{
+                imgs = ImageIO.read(new File("bomb.png"));
+                //imgs = imgs.getScaledInstance((int)StaticData.screenWidth, (int)StaticData.screenHeight, ImageIO.read(new File("background.png")).SCALE_SMOOTH);
+            }catch (IOException e) {
+                System.out.println("Wystąpił błąd z wczytaniem obrazka!");
+            }  
+            return imgs;
+            
+    }
+    private Image medkit(){
+            Image imgs = null;
+            try{
+                imgs = ImageIO.read(new File("medkit.png"));
                 //imgs = imgs.getScaledInstance((int)StaticData.screenWidth, (int)StaticData.screenHeight, ImageIO.read(new File("background.png")).SCALE_SMOOTH);
             }catch (IOException e) {
                 System.out.println("Wystąpił błąd z wczytaniem obrazka!");
