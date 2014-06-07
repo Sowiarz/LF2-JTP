@@ -69,7 +69,6 @@ public class Window {
         wypelijTlo();
         zrobObramowanie();
         ustawCzcionke();
-        
         StaticData.ekran.drawString("Nowa Gra", granicaOkna.getP1X()+20, granicaOkna.getP1Y()+30);
         //StaticData.ekran.drawString("Ustawienia", granicaOkna.getP1X()+20, granicaOkna.getP1Y()+60);
         
