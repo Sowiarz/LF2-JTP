@@ -69,16 +69,15 @@ public class Bomb {
  
     
     public void show() {
-        if(stan==26){
-            if(stan2==3)
-            {
-            wybuch();
-            stan++;
+        if(stan == 26){
+            if(stan2 == 2){
+                wybuch();
+                stan++;
             }
             else
             {
-            stan=0;
-            stan2++;
+                stan = 0;
+                stan2++;
             }
         }
             
