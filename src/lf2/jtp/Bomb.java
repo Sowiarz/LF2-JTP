@@ -74,25 +74,17 @@ public class Bomb {
                 Point odleglosc = new Point(x1, y1);
                 if(StaticData.odlegloscOdPunktow(odleglosc, new Point(pozx, pozy)) < 100) {
                     StaticData.getPlayer(i).setHP(StaticData.getPlayer(i).getHP()-25);
-                }                       
+                }    
             }
-            // stan++ - tak aby dokończyć animacje wybuchu i generować kolejne klatki za każdym wywołaniem wybuch();
-                if(stan == 41) {
-                czyWybuchla = true;
-                StaticData.removeBomb(this);
-                // usunięcie bomby z gry po wybuchu
-            }
-           
     }
+ 
     
     public void show() {
-        if(!czyWybuchla) {
-
-//            if((System.currentTimeMillis()-timeCreate) > ?) {
-            if(stan==26)
-                   wybuch();
-//            }
-        }   
+        if(stan==26){
+            wybuch();
+            stan++;
+        }
+            
         if (time + 100 < System.currentTimeMillis()) {
             time = System.currentTimeMillis();
             if(stan < 42)
@@ -100,7 +92,10 @@ public class Bomb {
         }
         
         StaticData.ekran.drawImage(bomba[stan], pozx, pozy, null);
+        if(stan == 41) 
+        StaticData.removeBomb(this);
     }
+}
     /*
     public boolean czyKolizja() {
         for(int i = 0; i < StaticData.getNumberOfPlayers(); i++) {
@@ -122,4 +117,3 @@ public class Bomb {
     
    
     
-}
