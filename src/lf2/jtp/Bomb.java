@@ -75,27 +75,29 @@ public class Bomb {
  
     
     public void show() {
-        if(stan == 26){
-            if(stan2 == 2){
-                wybuch();
+        if(!StaticData.getPause()) {
+            if(stan == 26){
+                if(stan2 == 2){
+                    wybuch();
+                    stan++;
+                }
+                else
+                {
+                    stan = 0;
+                    stan2++;
+                }
+            }
+
+            if (time + 50 < System.currentTimeMillis()) {
+                time = System.currentTimeMillis();
+                if(stan < 42)
                 stan++;
             }
-            else
-            {
-                stan = 0;
-                stan2++;
-            }
         }
-            
-        if (time + 50 < System.currentTimeMillis()) {
-            time = System.currentTimeMillis();
-            if(stan < 42)
-            stan++;
-        }
-        
         StaticData.ekran.drawImage(bomba[stan], pozx, pozy, null);
         if(stan == 41) 
         StaticData.removeBomb(this);
+        
     }
 }
 
