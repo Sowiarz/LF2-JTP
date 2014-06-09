@@ -6,6 +6,10 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+/**
+ *  Klasa odpowiedzialna za tworzenie nowej Bomby
+ * 
+ */
 public class Bomb {
     // obrazek
     private static BufferedImage[] bomba;
@@ -22,6 +26,9 @@ public class Bomb {
     private long time;
     private boolean czyWybuchla;
     
+    /**
+     * Konstrutor
+     */
     public Bomb() {
         pozx = StaticData.losujSzerokosc();
         pozy = StaticData.losujWysokosc();
@@ -73,7 +80,9 @@ public class Bomb {
             }
     }
  
-    
+    /**
+     * Pokazanie nowej bomby na ekranie
+     */
     public void show() {
         if(!StaticData.getPause()) {
             if(stan == 26){

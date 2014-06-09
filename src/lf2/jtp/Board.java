@@ -3,6 +3,10 @@ package lf2.jtp;
 
 import java.awt.event.KeyEvent;
 
+/**
+ *  Klasa odpowiedzialna za plansze - miejsce rozgrywki
+ * 
+ */
 public class Board implements InterfaceWindow, Obserwator {
     private static Board unikalnaInstancja;
     private int numberEnemy = 0;
@@ -10,6 +14,11 @@ public class Board implements InterfaceWindow, Obserwator {
     private Board() {
         
     }
+
+    /**
+     *  Metoda która tworzy wzorzec projektowy - SINGLETON
+     * @return
+     */
     public static Board getSingleton() {
         if(unikalnaInstancja == null) {
             unikalnaInstancja = new Board();
@@ -17,10 +26,17 @@ public class Board implements InterfaceWindow, Obserwator {
         return unikalnaInstancja;
     }
     
+    /**
+     *  Resetuje rozgrywki
+     */
     public static void resetBoard() {
         unikalnaInstancja = new Board();        
     }
     
+    /**
+     *  Dodaje przeciwnika do gry
+     * @param numberOfEnemy ilość przeciwników
+     */
     public void addEnemy(int numberOfEnemy) {
         numberEnemy = numberOfEnemy;
         for(int i = 0; i < numberOfEnemy; i++) {
@@ -28,6 +44,10 @@ public class Board implements InterfaceWindow, Obserwator {
         }        
     }
     
+    /**
+     *  dodaje nowego gracza
+     * @param c ControlPanel - sterowanie
+     */
     public void addPlayer(ControlPlayer c) {
         Player gracz = new Player(c);
                 
@@ -35,9 +55,6 @@ public class Board implements InterfaceWindow, Obserwator {
         
     }
     
-    private void randomEnemy() {
-        
-    }
     
     private void sterowanie(int i) {
         try {
@@ -98,8 +115,9 @@ public class Board implements InterfaceWindow, Obserwator {
         
     }
 
-    
-    
+    /**
+     * Metoda odpowiedzialna za wyświetlanie planszy
+     */
     public void show() {
         Ui.rysujPlansze();
         zarzadzajApteczkami();
@@ -129,6 +147,10 @@ public class Board implements InterfaceWindow, Obserwator {
         }
     }
 
+    /**
+     *  Klasa pochodząca od wzorca projektowego - Obserwator
+     * @param o - obiekt od którego została wywołana metoda Obiekt
+     */
     public void update(Object o) {
         
         if(o instanceof KeyEvent) {

@@ -4,9 +4,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+/**
+ * Klasa odpowiedzialna za kliknięcia myszką
+ * 
+ */
 public class MouseControl implements Obserwowany, MouseListener {
     private static ArrayList<Obserwator> obserwatorzy = new ArrayList<Obserwator>();
 
+    /**
+     * Dodanie nowego obserwatora kliknięć
+     * @param o Klasa obserwująca
+     */
     public void dodajObserwatora(Obserwator o) {
         try {
             obserwatorzy.add(o);
@@ -16,11 +24,19 @@ public class MouseControl implements Obserwowany, MouseListener {
         }
     }
 
+    /**
+     * Usunięcie obserwatora
+     * @param o Obserwator
+     */
     public void usunObserwatora(Obserwator o) {
         int i = obserwatorzy.indexOf(o);
         obserwatorzy.remove(i);
     }
 
+    /**
+     * powiadamianie obserwatorów o kliknięciu
+     * @param press Naciśnięcie klawisza myszki
+     */
     public void powiadamiajObserwatorow(Object press) {
         try {
             for(Obserwator o : obserwatorzy) {

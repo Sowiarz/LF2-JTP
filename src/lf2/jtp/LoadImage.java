@@ -5,14 +5,41 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+/**
+ * Metoda odpowiedzialna za ładowanie obrazków w grze
+ * 
+ */
 public class LoadImage {
     private static LoadImage unikalnaInstancja;
     
+    /**
+     * Obrazek tła
+     */
     public static Image background;
+
+    /** 
+     * Obrazek tła menu głownego
+     */
     public static Image mainMenu;
+
+    /**
+     * Obrazek z logo gry
+     */
     public static Image nazwa;
+
+    /**
+     * Obrazek z przyciskiem nowej gry
+     */
     public static Image newGame;
+
+    /**
+     * Obrazek bomby
+     */
     public static Image bomb;
+
+    /**
+     * Obrazek apteczki
+     */
     public static Image medkit;
     
     private LoadImage() {
@@ -25,6 +52,10 @@ public class LoadImage {
             medkit = medkit();
     }
     
+    /**
+     * Tworzenie Singletonu
+     * @return zwraca utworzony Singleton
+     */
     public static LoadImage getSingleton() {
         if(unikalnaInstancja == null) {
             unikalnaInstancja = new LoadImage();
@@ -66,18 +97,7 @@ public class LoadImage {
             return imgs;
             
     }
-    /*
-    private Image bomb(){
-            Image imgs = null;
-            try{
-                imgs = ImageIO.read(new File("bomb.png"));
-                //imgs = imgs.getScaledInstance((int)StaticData.screenWidth, (int)StaticData.screenHeight, ImageIO.read(new File("background.png")).SCALE_SMOOTH);
-            }catch (IOException e) {
-                System.out.println("Wystąpił błąd z wczytaniem obrazka!");
-            }  
-            return imgs;
-            
-    }*/
+
     private Image medkit(){
             Image imgs = null;
             try{

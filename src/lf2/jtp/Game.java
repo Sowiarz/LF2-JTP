@@ -10,7 +10,10 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
+/**
+ *  Główna klasa gry
+ * 
+ */
 public class Game implements Runnable {
    
     Dimension monitor = Toolkit.getDefaultToolkit().getScreenSize(); // Pobranie rozdzielczości ekranu
@@ -20,8 +23,10 @@ public class Game implements Runnable {
    BufferStrategy bufferStrategy;
    Screen obiektScreen;
    
-   
-   public Game(){
+    /**
+     * Konstruktor całego programu
+     */
+    public Game(){
       StaticData.screenWidth = monitor.width;
       StaticData.screenHeight = monitor.height;
       
@@ -123,8 +128,11 @@ public class Game implements Runnable {
       bufferStrategy.show();
    }
 
-   
-   public static void main(String [] args){
+    /**
+     * Klasa main
+     * @param args parametry wejściowe programu
+     */
+    public static void main(String [] args){
       Game ex = new Game();
       new Thread(ex).start();
    }

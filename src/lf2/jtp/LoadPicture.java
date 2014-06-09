@@ -6,6 +6,10 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+/**
+ * Klasa odpowiedzialna za ładowanie postaci gracza
+ * 
+ */
 public class LoadPicture {
     
     
@@ -19,10 +23,14 @@ public class LoadPicture {
     private int strona = 1;
     private long time;
         
+    /**
+     * Obrazek przedstawiający wszystkie ruchy postaci
+     */
     public static BufferedImage[] obrazek; //tablica przechowywująca obrazki przedstawiajace gracza
    
-
-    
+    /**
+     * Ładowanie obrazka
+     */
     public LoadPicture() {        
         try {
             obrazek = wczytaj();
@@ -108,10 +116,17 @@ public class LoadPicture {
             
     }
     
+    /**
+     * Metoda zwraca obrazek dla danego stanu gracza
+     * @return obrazek
+     */
     public BufferedImage getImage() {
         return obrazek[stan];
     }
     
+    /**
+     * Zmiana stanu gracza jak będzie poruszał się w prawo
+     */
     public void moveRight() {
             strona = 1;
         if (time + 100 < System.currentTimeMillis()) {
@@ -122,6 +137,9 @@ public class LoadPicture {
         }
     }
     
+    /**
+     * Zmiana stanu gracza jak będzie poruszał się w lewo
+     */
     public void moveLeft() {
         strona = -1;
         
@@ -133,6 +151,9 @@ public class LoadPicture {
         }
     }
     
+    /**
+     * Zmiana stanu gracza jak będzie poruszał się w dół
+     */
     public void moveDown() {
         if (time + 100 < System.currentTimeMillis()) {
             time = System.currentTimeMillis();      
@@ -149,6 +170,9 @@ public class LoadPicture {
         }
     }
     
+    /**
+     * Zmiana stanu gracza jak będzie poruszał się w górę
+     */
     public void moveUp() {
         if (time + 100 < System.currentTimeMillis()) {
             time = System.currentTimeMillis();
@@ -167,6 +191,9 @@ public class LoadPicture {
         }
     }
     
+    /**
+     * Zmiana stanu gracza jak będzie uderzał przeciwnika
+     */
     public void uderz(){
         if (time + 100 < System.currentTimeMillis()) {
             time = System.currentTimeMillis();
@@ -187,6 +214,9 @@ public class LoadPicture {
         
     }
     
+    /**
+     * Zmiana stanu gracza jak będzie cofał dłoń po uderzeniu
+     */
     public void setState() { // metoda cofa rękę podczas walki
         if(getStrona() == 1) { // skierowany w prawo
             if (time + 500 < System.currentTimeMillis()) {
@@ -205,10 +235,18 @@ public class LoadPicture {
         }
     }
     
+    /**
+     * Zwraca stan gracza w jaim się znajduje
+     * @return stan
+     */
     public int getState() {
         return stan;
     }
     
+    /**
+     * Zwraca stronę w którą obrócony jest gracz
+     * @return jeśli 1 to odwrócony w prawo, jeśli -1 to w lewo
+     */
     public int getStrona() {
         return strona;
     }

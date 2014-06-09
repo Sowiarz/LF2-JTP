@@ -1,12 +1,19 @@
 
 package lf2.jtp;
 
+/**
+ * Klasa tworząca apteczki na planszy
+ * 
+ */
 public class MedKit {
     
     int pozx;
     int pozy;
     long timeCreate;
     
+    /**
+     * Konstruktor klasy
+     */
     public MedKit() {
         pozx = StaticData.losujSzerokosc();
         pozy = StaticData.losujWysokosc();
@@ -14,7 +21,12 @@ public class MedKit {
     }
     
         // Sprawdzanie kolizji
-    public boolean czyKolizja() {
+
+    /**
+     * Sprawdzanie czy gracz jest w zasięgu apteczki
+     * @return zwraca true jeśli gracz jest w zasięgu apteczki
+     */
+        public boolean czyKolizja() {
         for(int i = 0; i < StaticData.getNumberOfPlayers(); i++) {
                             
                 int x1 = StaticData.getPlayer(i).getXPosition();
@@ -32,6 +44,9 @@ public class MedKit {
         return false;
     }
     
+    /**
+     * Metoda pokazuje apteczkę na mapie
+     */
     public void show() {
         StaticData.ekran.drawImage(LoadImage.medkit, pozx, pozy, null);
     }
