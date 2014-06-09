@@ -11,19 +11,6 @@ public class Sound {
     /**
      * Odtworzenie dzwięku
      */
-    public static void playSound() {
-        try {
-            AudioClip clip = Applet.newAudioClip(new URL("file:bij.wav"));
-            clip.play();
-        } 
-        catch (MalformedURLException murle) {
-            System.out.println(murle);
-        }
-    }
-    
-    /**
-     * Odtworzenie dzwięku
-     */
     public static synchronized void play() {
         new Thread(new Runnable() {
   

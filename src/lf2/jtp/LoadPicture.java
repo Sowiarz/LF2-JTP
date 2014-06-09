@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * Klasa odpowiedzialna za ładowanie postaci gracza
+ * Klasa odpowiedzialna za wczytywanie postaci gracza
  * 
  */
 public class LoadPicture {

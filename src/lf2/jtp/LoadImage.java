@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * Metoda odpowiedzialna za ładowanie obrazków w grze
+ * Metoda odpowiedzialna za wczytywanie obrazków w grze
  * 
  */
 public class LoadImage {

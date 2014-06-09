@@ -2,7 +2,7 @@ package lf2.jtp;
 
 /**
  * Wzorzec projektowy obserwator
- * @author Krzysiek
+ * 
  */
 public interface Obserwowany {
 

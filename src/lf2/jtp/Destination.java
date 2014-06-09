@@ -80,8 +80,8 @@ public class Destination {
     }
 
     /**
-     * Zwraca liczbę celi w liście
-     * @return liczba celi
+     * Zwraca liczbę celów w liście
+     * @return liczba celów
      */
     public int getNumber() {
         return cele.size();
